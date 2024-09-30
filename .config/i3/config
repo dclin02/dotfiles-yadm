@@ -78,6 +78,7 @@ floating_modifier $mod
 bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
 
+workspace_auto_back_and_forth yes
 bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
@@ -95,6 +96,8 @@ bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 bindsym $mod+minus workspace $ws11
 bindsym $mod+plus workspace $ws12
+bindsym $mod+bracketleft workspace $ws13
+bindsym $mod+bracketright workspace $ws14
 
 
 # Move focused container to workspace
@@ -111,6 +114,8 @@ bindsym $mod+Ctrl+9 move container to workspace $ws9
 bindsym $mod+Ctrl+0 move container to workspace $ws10
 bindsym $mod+Ctrl+minus move container to workspace $ws11
 bindsym $mod+Ctrl+plus move container to workspace $ws12
+bindsym $mod+Ctrl+bracketleft move container to workspace $ws13
+bindsym $mod+Ctrl+bracketright move container to workspace $ws14
 
 # Move to workspace with focused container
 bindsym $mod+Shift+dead_grave move container to workspace $ws0; workspace $ws0
@@ -126,6 +131,8 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 bindsym $mod+Shift+minus move container to workspace $ws11; workspace $ws11
 bindsym $mod+Shift+plus move container to workspace $ws12; workspace $ws12
+bindsym $mod+Shift+bracketleft move container to workspace $ws13; workspace $ws13
+bindsym $mod+Shift+bracketright move container to workspace $ws14; workspace $ws14
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+Ctrl+r mode "resize"
@@ -164,6 +171,11 @@ mode "resize" {
 # bindsym $mod+Return exec --no-startup-id xfce4-terminal
 bindsym $mod+Return exec --no-startup-id wezterm
 # bindsym $mod+Return exec --no-startup-id alacritty
+
+bindsym $mod+t exec --no-startup-id python /home/berin/.config/i3/scripts/i3drop-fs.py
+bindsym $mod+d exec --no-startup-id python /home/berin/.config/i3/scripts/i3drop.py
+bindsym $mod+c exec --no-startup-id /home/berin/.config/i3/scripts/i3-show-calc
+# bindsym $mod+c exec --no-startup-id python /home/berin/.i3/i3drop-calc.py
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -316,6 +328,10 @@ bindsym Print exec --no-startup-id scrot ~/Pictures/%Y-%m-%d-%T-screenshot.png &
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w ~/Pictures/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s ~/Pictures/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
 
+bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+
+bindsym $mod+Ctrl+m exec pavucontrol
+
 # Power Profiles menu switcher (rofi)
 bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles
 
@@ -325,19 +341,26 @@ bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
+# set $ws1 "1:"
+# set $ws2 "2:"
+# set $ws3 "3:"
+# set $ws4 "4:"
+# set $ws5 "5:"
 set $ws0 "0"
-set $ws1 "1"
-set $ws2 "2"
+set $ws1 "1:"
+set $ws2 "2:"
 set $ws3 "3"
 set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:󰝚"
+set $ws9 "9:"
+set $ws10 "10:"
 set $ws11 "11"
 set $ws12 "12"
+set $ws13 "13"
+set $ws14 "14"
 
 # use workspaces on different displays:
 # where you have to replace VGA-0/HDMI-0 with the names for your displays
@@ -354,6 +377,8 @@ workspace $ws9 output HDMI-A-1-1
 workspace $ws10 output HDMI-A-1-1
 workspace $ws11 output HDMI-A-1-1
 workspace $ws12 output HDMI-A-1-1
+workspace $ws13 output HDMI-A-0
+workspace $ws14 output HDMI-A-0
 
 # bind program to workspace and focus to them on startup:
 # assign [class="Xfce4-terminal"] $ws1
@@ -421,6 +446,7 @@ exec --no-startup-id numlockx on
 
 # configure multiple keyboard layouts and hotkey to switch (Alt+CAPSLOCK in this example)
 #exec --no-startup-id setxkbmap -layout 'us,sk' -variant altgr-intl,qwerty -option 'grp:alt_caps_toggle'
+exec --no-startup-id /home/berin/.config/i3/scripts/xkb-caps-lock.sh
 exec --no-startup-id xcape -e "#66=Escape"
 exec --no-startup-id setxkbmap -option 'caps:ctrl_modifier'
 exec --no-startup-id xset r rate 200 60
@@ -434,7 +460,7 @@ exec --no-startup-id kdeconnect-indicator
 
 # start a script to setup displays
 # uncomment the next line, use arandr to setup displays and save the file as monitor:
-exec --no-startup-id sleep 2 && ~/.screenlayout/monitor.sh && sleep 1 && feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
+exec --no-startup-id feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png && sleep 1 && ~/.screenlayout/monitor.sh && sleep 1 && feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
 
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
@@ -510,6 +536,12 @@ for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
 for_window [class="Pamac-manager"] floating enable
 for_window [window_role="About"] floating enable
+for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [class="GParted"] floating enable border normal
+for_window [title="File Transfer*"] floating enable
+for_window [class="Clipgrab"] floating enable
+for_window [instance="speedcrunch"] floating enable, move scratchpad
+for_window [class="Blueman-manager"] floating enable
 
 # set border of floating window
 for_window [class="urxvt"] border pixel 1
@@ -539,11 +571,34 @@ set $mediumgrey		#8b8b8b
 set $yellowbrown	#e1b700
 
 # define colors for windows:
+# endeavouros default:
 #class		        	border		bground		text		indicator	child_border
-client.focused		    	$lightblue	$darkblue	$white		$mediumgrey	$mediumgrey
-client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	$darkgrey
-client.focused_inactive		$darkblue	$darkblue	$grey		$black		$black
-client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
+# client.focused		    	$lightblue	$darkblue	$white		$mediumgrey	$mediumgrey
+# client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	$darkgrey
+# client.focused_inactive		$darkblue	$darkblue	$grey		$black		$black
+# client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
+
+# client.focused            $grey #5f676a #ffffff #484e50   #5f676a
+# client.focused              #264873 #3b4252 #ffffff #484e50   #5f676a
+client.focused              #5e81ac #3b4252 #ffffff #484e50   #5f676a
+client.focused_inactive     #3b4252 #3b4252 #ffffff #484e50   #5f676a
+
+# old manjaro config:
+# client.focused          #556064 #556064 #80FFF9 #FDF6E3
+# client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
+# client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
+# client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
+# client.placeholder      #000000 #0c0c0c #ffffff #000000 
+
+# i3 defaults
+# class                 border  backgr. text    indicator child_border
+# client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+# client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+# client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+# client.urgent           #2f343a #900000 #ffffff #900000   #900000
+# client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+# client.background       #2B2C2B
 
 ############################################
 # bar settings (input comes from i3blocks) #
@@ -565,13 +620,14 @@ bar {
 		    tray_output primary
         # tray_output HDMI-A-0
         # tray_output HDMI-A-1-1
+        # tray_output DisplayPort-1
 		    tray_padding 0
 
 # When strip_workspace_numbers is set to yes,
 # any workspace that has a name of the form
 # “[n][:][NAME]” will display only the name.
 strip_workspace_numbers yes
-##strip_workspace_name no
+# strip_workspace_name no
 
 		    colors {
 		    separator          $purple
@@ -582,6 +638,12 @@ strip_workspace_numbers yes
 		active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
 		inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
 		urgent_workspace	$urgentred	    	$urgentred	$white		$purple
+
+    # focused_workspace  #F9FAF9 #16a085 #292F34
+    # active_workspace   #595B5B #353836 #FDF6E3
+    # inactive_workspace #595B5B #222D31 #EEE8D5
+    # binding_mode       #16a085 #2C2C2C #F9FAF9
+    # urgent_workspace   #16a085 #FDF6E3 #E5201D
 	}
 }
 
@@ -635,8 +697,8 @@ bindsym $mod+space exec --no-startup-id rofi -modi drun -show drun \
 
 ## rofi bindings for window menu ($mod+t /F10 optional disabled)
 
-bindsym $mod+t exec --no-startup-id rofi -show window \
-		-config ~/.config/rofi/rofidmenu.rasi
+# bindsym $mod+t exec --no-startup-id rofi -show window \
+# 		-config ~/.config/rofi/rofidmenu.rasi
 
 # bindsym $mod+Tab exec --no-startup-id rofi -show window -show-icons -location 2 -yoffset 30
 # bindsym $mod+Shift+Tab exec --no-startup-id rofi -show windowcd -show-icons -location 2 -yoffset 30
@@ -648,9 +710,9 @@ bindsym $mod+Shift+Tab exec --no-startup-id rofi -show windowcd -config ~/.confi
 
 ## rofi bindings to manage clipboard (install rofi-greenclip from the AUR)
 
-#exec --no-startup-id greenclip daemon>/dev/null
-#bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard \
-#		-config ~/.config/rofi/rofidmenu.rasi
+# exec --no-startup-id greenclip daemon>/dev/null
+# bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard \
+# 	-config ~/.config/rofi/rofidmenu.rasi
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
