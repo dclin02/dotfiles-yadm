@@ -1,0 +1,13 @@
+[Unit]
+Description=Whatever description
+StartLimitIntervalSec=120
+StartLimitBurst=20
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/easyeffects --gapplication-service
+Restart=on-failure
+RestartSec=2s
+
+[Install]
+WantedBy=default.target

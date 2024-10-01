@@ -1,0 +1,9 @@
+#!/bin/bash
+
+num=`ps aux|rg '[^rg]\sspeedcrunch'|wc -l`
+if [ $num -gt 0 ]
+  then
+    i3-msg '[instance="speedcrunch"] scratchpad show'
+  else
+    speedcrunch &
+fi

@@ -172,7 +172,8 @@ mode "resize" {
 bindsym $mod+Return exec --no-startup-id wezterm
 # bindsym $mod+Return exec --no-startup-id alacritty
 
-bindsym $mod+t exec --no-startup-id python /home/berin/.config/i3/scripts/i3drop-fs.py
+# bindsym $mod+t exec --no-startup-id python /home/berin/.config/i3/scripts/i3drop-fs.py
+bindsym $mod+t workspace $ws1
 bindsym $mod+d exec --no-startup-id python /home/berin/.config/i3/scripts/i3drop.py
 bindsym $mod+c exec --no-startup-id /home/berin/.config/i3/scripts/i3-show-calc
 # bindsym $mod+c exec --no-startup-id python /home/berin/.i3/i3drop-calc.py
@@ -324,9 +325,9 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 ## App shortcuts
 bindsym $mod+F2 exec --no-startup-id /usr/bin/firefox
 bindsym $mod+F3 exec --no-startup-id /usr/bin/thunar
-bindsym Print exec --no-startup-id scrot ~/Pictures/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
-bindsym $mod+Print --release exec --no-startup-id i3-scrot -w ~/Pictures/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
-bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s ~/Pictures/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
+bindsym Print exec --no-startup-id scrot ~/Pictures/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/Pictures/$(date +"%Y-%m-%d-%T")-screenshot.png"
+bindsym $mod+Print --release exec --no-startup-id i3-scrot -w 0 -- ~/Pictures/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/Pictures/$(date +"%Y-%m-%d-%T")-screenshot.png"
+bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s ~/Pictures/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/Pictures/$(date +"%Y-%m-%d-%T")-screenshot.png"
 
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
@@ -449,7 +450,7 @@ exec --no-startup-id numlockx on
 exec --no-startup-id /home/berin/.config/i3/scripts/xkb-caps-lock.sh
 exec --no-startup-id xcape -e "#66=Escape"
 exec --no-startup-id setxkbmap -option 'caps:ctrl_modifier'
-exec --no-startup-id xset r rate 200 60
+exec --no-startup-id xset r rate 200 45
 
 exec --no-startup-id unclutter
 exec --no-startup-id /usr/lib/kdeconnectd

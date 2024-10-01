@@ -1,0 +1,8 @@
+
+#!/bin/bash
+
+tmux has-session -t dropdown 2>/dev/null
+if [ $? -ne 0 ]; then
+  tmux new-session -s dropdown -d
+  tmux move-window -t 0
+fi
