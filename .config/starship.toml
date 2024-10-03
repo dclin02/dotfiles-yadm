@@ -1,0 +1,20 @@
+[aws]
+disabled = true
+
+[time]
+format = "[$time]($style) "
+style = "245"
+disabled = false
+
+[package]
+display_private = true
+
+[git_status]
+format = '([\[$conflicted$deleted$renamed$modified$staged$untracked$ahead_behind\]]($style) )'
+
+[directory]
+truncate_to_repo=false
+truncation_length=2
+
+[status]
+disabled = false
