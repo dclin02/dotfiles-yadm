@@ -97,6 +97,8 @@ lvim.builtin.treesitter.rainbow.enable = true
 lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.lir.show_hidden_files = true
 
+lvim.builtin.dap.ui.config.render.max_type_length = 20
+
 -- Automatically install missing parsers when entering buffer
 lvim.builtin.treesitter.auto_install = true
 
@@ -401,7 +403,6 @@ dapgo.setup({
     },
   },
 })
-
 
 ------------------------
 -- LSP
