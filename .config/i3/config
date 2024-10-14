@@ -463,7 +463,8 @@ exec --no-startup-id kdeconnect-indicator
 
 # start a script to setup displays
 # uncomment the next line, use arandr to setup displays and save the file as monitor:
-exec --no-startup-id feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png && sleep 1 && ~/.screenlayout/monitor.sh && sleep 1 && feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
+# exec --no-startup-id feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png && sleep 1 && ~/.screenlayout/monitor.sh && sleep 1 && feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
+exec xsetroot -solid "#000000" && sleep 1 && ~/.screenlayout/monitor.sh
 
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
@@ -620,11 +621,14 @@ bar {
 #	    	i3bar_command i3bar --transparency
 # it could be that you have no primary display set: set one (xrandr --output <output> --primary)
 # reference: https://i3wm.org/docs/userguide.html#_tray_output
-		    tray_output primary
+		    # tray_output primary
         # tray_output HDMI-A-0
         # tray_output HDMI-A-1-1
-        # tray_output DisplayPort-1
 		    tray_padding 0
+        tray_output DisplayPort-1
+    output DisplayPort-1
+    output HDMI-A-0
+    # output DisplayPort-0
 
 # When strip_workspace_numbers is set to yes,
 # any workspace that has a name of the form
