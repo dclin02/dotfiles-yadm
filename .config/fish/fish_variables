@@ -1,6 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR BROWSER:/usr/bin/firefox
+SETUVAR --export RANGER_LOAD_DEFAULT_RC:false
 SETUVAR VIRTUAL_ENV_DISABLE_PROMPT:1
 SETUVAR __fish_initialized:3400
 SETUVAR _fisher_edc_2F_bass_files:\x7e/\x2econfig/fish/functions/__bass\x2epy\x1e\x7e/\x2econfig/fish/functions/bass\x2efish

@@ -9,9 +9,12 @@ if status is-interactive
   alias ls="eza -a --color=always --group-directories-first --icons"
   alias lg="lazygit"
   alias tray="/home/berin/tray"
-  alias hdmir="tmux attach-session -t hdmi-r || tmux new -s hdmi-r"
-  alias hdmil="tmux attach-session -t hdmi-l || tmux new -s hdmi-l"
+  alias hdmir="tmux attach-session -t right || tmux new -s right"
+  alias r="tmux attach-session -t right || tmux new -s right"
+  alias hdmil="tmux attach-session -t left || tmux new -s left"
+  alias l="tmux attach-session -t left || tmux new -s left"
   alias main="tmux attach-session -t main || tmux new -s main"
+  alias m="tmux attach-session -t main || tmux new -s main"
   alias tempo="curl 'wttr.in/~USP?2QF'"
   alias tempo2="curl 'v2.wttr.in/~USP?2QF'"
   alias tf='terraform'
@@ -24,6 +27,8 @@ if status is-interactive
   abbr -a ld lazydocker
 
   source /opt/asdf-vm/asdf.fish
-   source ~/.asdf/plugins/golang/set-env.fish
+  source ~/.asdf/plugins/golang/set-env.fish
   fnm env | source
+
+  set -U -x RANGER_LOAD_DEFAULT_RC false
 end
