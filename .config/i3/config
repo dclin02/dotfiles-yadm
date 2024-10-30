@@ -173,9 +173,9 @@ bindsym $mod+Return exec --no-startup-id wezterm
 # bindsym $mod+Return exec --no-startup-id alacritty
 
 # bindsym $mod+t exec --no-startup-id python /home/berin/.config/i3/scripts/i3drop-fs.py
-bindsym $mod+t workspace $ws1
-bindsym $mod+Shift+t move container to workspace $ws1; workspace $ws1
-bindsym $mod+Ctrl+t move container to workspace $ws1
+bindsym $mod+t workspace $ws2
+bindsym $mod+Shift+t move container to workspace $ws2; workspace $ws2
+bindsym $mod+Ctrl+t move container to workspace $ws2
 bindsym $mod+d exec --no-startup-id python /home/berin/.config/i3/scripts/i3drop.py
 bindsym $mod+c exec --no-startup-id /home/berin/.config/i3/scripts/i3-show-calc
 # bindsym $mod+c exec --no-startup-id python /home/berin/.i3/i3drop-calc.py
