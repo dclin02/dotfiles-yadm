@@ -1,6 +1,8 @@
-alsa_monitor.enabled = true
+-- alsa_monitor.enabled = true
+monitor.alsa.enabled = true
 
-alsa_monitor.properties = {
+-- alsa_monitor.properties = {
+monitor.alsa.properties = {
   -- Create a JACK device. This is not enabled by default because
   -- it requires that the PipeWire JACK replacement libraries are
   -- not used by the session manager, in order to be able to
@@ -36,7 +38,8 @@ alsa_monitor.properties = {
   },
 }
 
-alsa_monitor.rules = {
+-- alsa_monitor.rules = {
+monitor.alsa.rules = {
   -- An array of matches/actions to evaluate.
   --
   -- If you want to disable some devices or nodes, you can apply properties per device as the following example.
@@ -51,6 +54,19 @@ alsa_monitor.rules = {
   --    ["device.disabled"] = true,
   --  },
   --}
+  {
+    matches = {
+      {
+        { "node.name", "matches", "alsa_output.pci-0000_14_00.6.analog-surround-51" },
+      },
+
+    },
+    apply_properties = {
+      ["api.alsa.use-chmap"] = true,
+      ["channelmix.mix-lfe"] = true,
+      -- ["audio.position"] = "..."
+    },
+  },
   {
     matches = {
       {
