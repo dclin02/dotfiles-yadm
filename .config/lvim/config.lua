@@ -82,6 +82,12 @@ lvim.builtin.which_key.mappings["ss"] = {
 lvim.builtin.which_key.mappings["W"] = {
   "<cmd>set wrap!<cr>", "Toggle Word Wrap",
 }
+lvim.builtin.which_key.mappings["C"] = {
+  name = "Copilot Chat",
+  o = { "<cmd>CopilotChatOpen<cr>", "Open Chat Window" },
+  t = { "<cmd>CopilotChatToggle<cr>", "Toggle Chat Window" },
+  r = { "<cmd>CopilotChatReset<cr>", "Reset Chat Window" },
+}
 
 -- -- Change theme settings
 -- lvim.colorscheme = "lunar"
@@ -400,6 +406,12 @@ dapgo.setup({
       name = 'Launch Charge Worker',
       request = 'launch',
       program = "/home/berin/repos/payment-api/cmd/charge-worker/main.go",
+    },
+    {
+      type = 'go',
+      name = 'Launch Product Script',
+      request = 'launch',
+      program = "/home/berin/repos/payment-api/cmd/product-migration-script",
     },
   },
 })
