@@ -31,4 +31,8 @@ if status is-interactive
   fnm env | source
 
   set -U -x RANGER_LOAD_DEFAULT_RC false
+
+  # The next line updates PATH for the Google Cloud SDK.
+  if [ -f '/home/berin/google-cloud-sdk/path.fish.inc' ]; . '/home/berin/google-cloud-sdk/path.fish.inc'; end
 end
+
