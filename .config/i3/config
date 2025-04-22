@@ -169,11 +169,11 @@ mode "resize" {
 
 # start a terminal
 # bindsym $mod+Return exec --no-startup-id xfce4-terminal
-bindsym $mod+Return exec --no-startup-id wezterm
-# bindsym $mod+Return exec --no-startup-id alacritty
+# bindsym $mod+Return exec --no-startup-id wezterm
+bindsym $mod+Return exec --no-startup-id alacritty
 
-# bindsym $mod+t exec --no-startup-id python /home/berin/.config/i3/scripts/i3drop-fs.py
-bindsym $mod+t workspace $ws2
+bindsym $mod+t exec --no-startup-id python /home/berin/.config/i3/scripts/i3drop-fs.py
+# bindsym $mod+t workspace $ws2
 bindsym $mod+Shift+t move container to workspace $ws2; workspace $ws2
 bindsym $mod+Ctrl+t move container to workspace $ws2
 bindsym $mod+d exec --no-startup-id python /home/berin/.config/i3/scripts/i3drop.py
@@ -380,8 +380,8 @@ workspace $ws9 output HDMI-A-0
 workspace $ws10 output HDMI-A-0
 workspace $ws11 output HDMI-A-0
 workspace $ws12 output HDMI-A-0
-workspace $ws13 output HDMI-A-0
-workspace $ws14 output HDMI-A-0
+workspace $ws13 output DisplayPort-0
+workspace $ws14 output DisplayPort-1
 
 # bind program to workspace and focus to them on startup:
 # assign [class="Xfce4-terminal"] $ws1
@@ -453,6 +453,7 @@ exec --no-startup-id /home/berin/.config/i3/scripts/xkb-caps-lock.sh
 exec --no-startup-id xcape -e "#66=Escape"
 exec --no-startup-id setxkbmap -option 'caps:ctrl_modifier'
 exec --no-startup-id xset r rate 200 45
+# exec --no-startup-id xset r rate 300 45
 
 exec --no-startup-id unclutter
 exec --no-startup-id /usr/lib/kdeconnectd
@@ -628,7 +629,7 @@ bar {
         tray_output DisplayPort-1
     output DisplayPort-1
     output HDMI-A-0
-    # output DisplayPort-0
+    output DisplayPort-0
 
 # When strip_workspace_numbers is set to yes,
 # any workspace that has a name of the form

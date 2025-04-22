@@ -88,6 +88,10 @@ lvim.builtin.which_key.mappings["C"] = {
   t = { "<cmd>CopilotChatToggle<cr>", "Toggle Chat Window" },
   r = { "<cmd>CopilotChatReset<cr>", "Reset Chat Window" },
 }
+lvim.builtin.which_key.mappings["U"] = {
+  name = "Utils",
+  S = { "<cmd>wshada!<cr>", "Clear ShaDa File" },
+}
 
 -- -- Change theme settings
 -- lvim.colorscheme = "lunar"
@@ -163,7 +167,9 @@ lvim.builtin.treesitter.ensure_installed = {
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { command = "goimports",     filetypes = { "go" } },
-  { command = "gofumpt",       filetypes = { "go" } },
+  -- { command = "gofumpt",       filetypes = { "go" } },
+  -- { command = "/home/berin/go/bin/gofumpt", filetypes = { "go" } },
+  { command = "gofmt",         filetypes = { "go" } },
   { command = "black",         filetypes = { "python" } },
   { command = "terraform_fmt", filetypes = { "terraform" } },
 }
@@ -201,6 +207,7 @@ formatters.setup {
 lvim.plugins = {
   "olexsmir/gopher.nvim",
   "leoluz/nvim-dap-go",
+  "lambdalisue/vim-suda",
   {
     "tpope/vim-fugitive",
     cmd = {
@@ -350,7 +357,7 @@ lvim.plugins = {
   -- 'gptlang/CopilotChat.nvim',
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "canary",
+    branch = "main",
     dependencies = {
       { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
       { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
@@ -360,6 +367,9 @@ lvim.plugins = {
       -- See Configuration section for rest
     },
     -- See Commands section for default commands if you want to lazy load on them
+  },
+  {
+
   },
 }
 
@@ -401,17 +411,23 @@ dapgo.setup({
       request = 'launch',
       program = "/home/berin/repos/payment-api/cmd/api/main.go",
     },
+    -- {
+    --   type = 'go',
+    --   name = 'Launch Charge Worker',
+    --   request = 'launch',
+    --   program = "/home/berin/repos/payment-api/cmd/charge-worker/main.go",
+    -- },
+    -- {
+    --   type = 'go',
+    --   name = 'Launch Product Script',
+    --   request = 'launch',
+    --   program = "/home/berin/repos/payment-api/scripts/product-migration-script",
+    -- },
     {
       type = 'go',
-      name = 'Launch Charge Worker',
+      name = 'Launch SH API',
       request = 'launch',
-      program = "/home/berin/repos/payment-api/cmd/charge-worker/main.go",
-    },
-    {
-      type = 'go',
-      name = 'Launch Product Script',
-      request = 'launch',
-      program = "/home/berin/repos/payment-api/cmd/product-migration-script",
+      program = "/home/berin/repos/sorting-hat/cmd/api/main.go",
     },
   },
 })
