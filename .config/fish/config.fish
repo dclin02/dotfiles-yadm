@@ -1,6 +1,6 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
-  fish_add_path /home/berin/.local/bin
+  fish_add_path /home/daniel.lin/.local/bin
   starship init fish | source
   zoxide init fish | source
   fish_vi_key_bindings
@@ -8,7 +8,7 @@ if status is-interactive
   alias cat="bat"
   alias ls="eza -a --color=always --group-directories-first --icons"
   alias lg="lazygit"
-  alias tray="/home/berin/tray"
+  # alias tray="/home/daniel.lin/tray"
   alias hdmir="tmux attach-session -t right || tmux new -s right"
   alias r="tmux attach-session -t right || tmux new -s right"
   alias hdmil="tmux attach-session -t left || tmux new -s left"
@@ -18,7 +18,7 @@ if status is-interactive
   alias tempo="curl 'wttr.in/~USP?2QF'"
   alias tempo2="curl 'v2.wttr.in/~USP?2QF'"
   alias tf='terraform'
-  alias kb "/home/berin/keyboard-configure.sh"
+  alias kb "/home/daniel.lin/keyboard-configure.sh"
   direnv hook fish | source
   set -gx EDITOR lvim
   set -gx BROWSER /usr/bin/firefox
@@ -26,13 +26,28 @@ if status is-interactive
   fish_add_path (go env GOPATH)/bin
   abbr -a ld lazydocker
 
-  source /opt/asdf-vm/asdf.fish
+  # source /opt/asdf-vm/asdf.fish
   source ~/.asdf/plugins/golang/set-env.fish
-  fnm env | source
+  # fnm env | source
 
   set -U -x RANGER_LOAD_DEFAULT_RC false
 
   # The next line updates PATH for the Google Cloud SDK.
-  if [ -f '/home/berin/google-cloud-sdk/path.fish.inc' ]; . '/home/berin/google-cloud-sdk/path.fish.inc'; end
+  if [ -f '/home/daniel.lin/google-cloud-sdk/path.fish.inc' ]; . '/home/daniel.lin/google-cloud-sdk/path.fish.inc'; end
+
+
+  # ASDF configuration code
+  if test -z $ASDF_DATA_DIR
+      set _asdf_shims "$HOME/.asdf/shims"
+  else
+      set _asdf_shims "$ASDF_DATA_DIR/shims"
+  end
+
+  # Do not use fish_add_path (added in Fish 3.2) because it
+  # potentially changes the order of items in PATH
+  if not contains $_asdf_shims $PATH
+      set -gx --prepend PATH $_asdf_shims
+  end
+  set --erase _asdf_shims
 end
 

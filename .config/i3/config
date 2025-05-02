@@ -34,7 +34,7 @@ set $mod2 Mod1
 #####################
 
 # default i3 tiling mode:
-workspace_layout default
+# workspace_layout default
 
 # i3 stacking layout:
 # Each window will be fullscreen and tabbed top to bottom.
@@ -42,7 +42,7 @@ workspace_layout default
 
 # i3 tabbed layout:
 # Each new window will open fullscreen as a tab (left to right)
-#workspace_layout tabbed
+workspace_layout tabbed
 
 ##############################
 # extra options for windows: #
@@ -98,6 +98,8 @@ bindsym $mod+minus workspace $ws11
 bindsym $mod+plus workspace $ws12
 bindsym $mod+bracketleft workspace $ws13
 bindsym $mod+bracketright workspace $ws14
+bindsym $mod+semicolon workspace $ws15
+bindsym $mod+dead_acute workspace $ws16
 
 
 # Move focused container to workspace
@@ -116,6 +118,8 @@ bindsym $mod+Ctrl+minus move container to workspace $ws11
 bindsym $mod+Ctrl+plus move container to workspace $ws12
 bindsym $mod+Ctrl+bracketleft move container to workspace $ws13
 bindsym $mod+Ctrl+bracketright move container to workspace $ws14
+bindsym $mod+Ctrl+semicolon move container to workspace $ws15
+bindsym $mod+Ctrl+dead_acute move container to workspace $ws16
 
 # Move to workspace with focused container
 bindsym $mod+Shift+dead_grave move container to workspace $ws0; workspace $ws0
@@ -133,6 +137,8 @@ bindsym $mod+Shift+minus move container to workspace $ws11; workspace $ws11
 bindsym $mod+Shift+plus move container to workspace $ws12; workspace $ws12
 bindsym $mod+Shift+bracketleft move container to workspace $ws13; workspace $ws13
 bindsym $mod+Shift+bracketright move container to workspace $ws14; workspace $ws14
+bindsym $mod+Shift+semicolon move container to workspace $ws15; workspace $ws15
+bindsym $mod+Shift+dead_acute move container to workspace $ws16; workspace $ws16
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+Ctrl+r mode "resize"
@@ -169,16 +175,16 @@ mode "resize" {
 
 # start a terminal
 # bindsym $mod+Return exec --no-startup-id xfce4-terminal
-bindsym $mod+Return exec --no-startup-id wezterm
-# bindsym $mod+Return exec --no-startup-id alacritty
+# bindsym $mod+Return exec --no-startup-id wezterm
+bindsym $mod+Return exec --no-startup-id alacritty
 
-# bindsym $mod+t exec --no-startup-id python /home/berin/.config/i3/scripts/i3drop-fs.py
-bindsym $mod+t workspace $ws2
+bindsym $mod+t exec --no-startup-id python /home/daniel.lin/.config/i3/scripts/i3drop-fs.py
+# bindsym $mod+t workspace $ws2
 bindsym $mod+Shift+t move container to workspace $ws2; workspace $ws2
 bindsym $mod+Ctrl+t move container to workspace $ws2
-bindsym $mod+d exec --no-startup-id python /home/berin/.config/i3/scripts/i3drop.py
-bindsym $mod+c exec --no-startup-id /home/berin/.config/i3/scripts/i3-show-calc
-# bindsym $mod+c exec --no-startup-id python /home/berin/.i3/i3drop-calc.py
+bindsym $mod+d exec --no-startup-id python /home/daniel.lin/.config/i3/scripts/i3drop.py
+bindsym $mod+c exec --no-startup-id /home/daniel.lin/.config/i3/scripts/i3-show-calc
+# bindsym $mod+c exec --no-startup-id python /home/daniel.lin/.i3/i3drop-calc.py
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -186,15 +192,23 @@ bindsym $mod+Shift+q kill
 # exit-menu
 bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3/scripts/powermenu
 bindsym $mod+F12 mode "$mode_system"
-set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+# set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+set $mode_system (l)ock, (e)xit, (s)uspend, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+    # bindsym l exec --no-startup-id i3exit lock, mode "default"
+    # bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    # bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    # bindsym e exec --no-startup-id i3exit logout, mode "default"
+    # bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    # bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    # bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym l exec --no-startup-id /home/daniel.lin/.config/i3/scripts/blur-lock
+    bindsym s exec --no-startup-id systemctl suspend
+    # bindsym u exec --no-startup-id i3-msg exit
+    bindsym e exec --no-startup-id i3-msg exit
+    # bindsym h exec --no-startup-id systemctl hibernate
+    bindsym r exec --no-startup-id systemctl reboot
+    bindsym Shift+s exec --no-startup-id systemctl poweroff
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -328,8 +342,8 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym $mod+F2 exec --no-startup-id /usr/bin/firefox
 bindsym $mod+F3 exec --no-startup-id /usr/bin/thunar
 bindsym Print exec --no-startup-id scrot ~/Pictures/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/Pictures/$(date +"%Y-%m-%d-%T")-screenshot.png"
-bindsym $mod+Print --release exec --no-startup-id i3-scrot -w 0 -- ~/Pictures/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/Pictures/$(date +"%Y-%m-%d-%T")-screenshot.png"
-bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s ~/Pictures/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/Pictures/$(date +"%Y-%m-%d-%T")-screenshot.png"
+bindsym $mod+Print --release exec --no-startup-id scrot -w 0 -- ~/Pictures/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/Pictures/$(date +"%Y-%m-%d-%T")-screenshot.png"
+bindsym $mod+Shift+Print --release exec --no-startup-id scrot -s ~/Pictures/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/Pictures/$(date +"%Y-%m-%d-%T")-screenshot.png"
 
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
@@ -350,38 +364,50 @@ bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles
 # set $ws4 "4:"
 # set $ws5 "5:"
 set $ws0 "0"
-set $ws1 "1:"
-set $ws2 "2:"
+# set $ws1 "1:"
+set $ws1 "1"
+# set $ws2 "2:"
+set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
-set $ws5 "5:"
-set $ws6 "6:"
-set $ws7 "7:"
-set $ws8 "8:󰝚"
-set $ws9 "9:"
-set $ws10 "10:"
+# set $ws5 "5:"
+set $ws5 "5"
+# set $ws6 "6:"
+set $ws6 "6"
+# set $ws7 "7:"
+set $ws7 "7"
+# set $ws8 "8:󰝚"
+set $ws8 "8"
+# set $ws9 "9:"
+set $ws9 "9"
+# set $ws10 "10:"
+set $ws10 "10"
 set $ws11 "11"
 set $ws12 "12"
 set $ws13 "13"
 set $ws14 "14"
+set $ws15 "15"
+set $ws16 "16"
 
 # use workspaces on different displays:
 # where you have to replace VGA-0/HDMI-0 with the names for your displays
 # you can get from xrandr command
-workspace $ws1 output DisplayPort-0
-workspace $ws2 output DisplayPort-0
-workspace $ws3 output DisplayPort-0
-workspace $ws4 output DisplayPort-0
-workspace $ws5 output DisplayPort-1
-workspace $ws6 output DisplayPort-1
-workspace $ws7 output DisplayPort-1
-workspace $ws8 output DisplayPort-1
-workspace $ws9 output HDMI-A-0
-workspace $ws10 output HDMI-A-0
-workspace $ws11 output HDMI-A-0
-workspace $ws12 output HDMI-A-0
-workspace $ws13 output HDMI-A-0
-workspace $ws14 output HDMI-A-0
+workspace $ws0 output eDP-1
+workspace $ws1 output HDMI-1
+workspace $ws2 output HDMI-1
+workspace $ws3 output HDMI-1
+workspace $ws4 output HDMI-1
+workspace $ws5 output DP-1
+workspace $ws6 output DP-1
+workspace $ws7 output DP-1
+workspace $ws8 output DP-1
+workspace $ws9 output DP-3
+workspace $ws10 output DP-3
+workspace $ws11 output DP-3
+workspace $ws12 output DP-3
+workspace $ws13 output eDP-1
+workspace $ws14 output eDP-1
+workspace $ws15 output eDP-1
 
 # bind program to workspace and focus to them on startup:
 # assign [class="Xfce4-terminal"] $ws1
@@ -447,12 +473,15 @@ exec --no-startup-id dex --autostart --environment i3
 # num lock activated
 exec --no-startup-id numlockx on
 
+exec --no-startup-id /usr/libexec/gsd-xsettings
+
 # configure multiple keyboard layouts and hotkey to switch (Alt+CAPSLOCK in this example)
 #exec --no-startup-id setxkbmap -layout 'us,sk' -variant altgr-intl,qwerty -option 'grp:alt_caps_toggle'
-exec --no-startup-id /home/berin/.config/i3/scripts/xkb-caps-lock.sh
+exec --no-startup-id /home/daniel.lin/.config/i3/scripts/xkb-caps-lock.sh
 exec --no-startup-id xcape -e "#66=Escape"
 exec --no-startup-id setxkbmap -option 'caps:ctrl_modifier'
 exec --no-startup-id xset r rate 200 45
+exec --no-startup-id xset s off && xset -dpms && xset s noblank
 
 exec --no-startup-id unclutter
 exec --no-startup-id /usr/lib/kdeconnectd
@@ -464,7 +493,8 @@ exec --no-startup-id kdeconnect-indicator
 # start a script to setup displays
 # uncomment the next line, use arandr to setup displays and save the file as monitor:
 # exec --no-startup-id feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png && sleep 1 && ~/.screenlayout/monitor.sh && sleep 1 && feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
-exec xsetroot -solid "#000000" && sleep 1 && ~/.screenlayout/monitor.sh
+exec --no-startup-id feh --bg-max /usr/share/backgrounds/Fuwafuwa_nanbatto_san_by_amaral-dark.png && sleep 1 && ~/.screenlayout/monitor.sh && sleep 1 && feh --bg-max /usr/share/backgrounds/Fuwafuwa_nanbatto_san_by_amaral-dark.png
+# exec xsetroot -solid "#000000" && sleep 1 && ~/.screenlayout/monitor.sh
 
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
@@ -534,7 +564,7 @@ for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 
 # set floating (nontiling) for special apps
 for_window [class="Xsane" instance="xsane"] floating enable
-for_window [class="pavucontrol" instance="pavucontrol"] floating enable
+for_window [class="Pavucontrol"] floating enable
 for_window [class="qt5ct" instance="qt5ct"] floating enable
 for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
@@ -621,14 +651,14 @@ bar {
 #	    	i3bar_command i3bar --transparency
 # it could be that you have no primary display set: set one (xrandr --output <output> --primary)
 # reference: https://i3wm.org/docs/userguide.html#_tray_output
-		    # tray_output primary
-        # tray_output HDMI-A-0
-        # tray_output HDMI-A-1-1
+		    tray_output primary
+        # tray_output HDMI-1
+        # tray_output eDP-1
 		    tray_padding 0
-        tray_output DisplayPort-1
-    output DisplayPort-1
-    output HDMI-A-0
-    # output DisplayPort-0
+    output DP-1
+    output HDMI-1
+    output eDP-1
+    output DP-3
 
 # When strip_workspace_numbers is set to yes,
 # any workspace that has a name of the form

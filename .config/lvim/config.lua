@@ -8,16 +8,16 @@ vim.opt.tabstop = 2
 vim.opt.relativenumber = true
 vim.opt.shell = "/bin/bash"
 vim.cmd [[set jumpoptions+=stack]]
--- vim.cmd [[au ColorScheme * hi VertSplit guibg=#282c34]]
--- vim.opt.fillchars = {
---   horiz     = ' ',
---   horizup   = ' ',
---   horizdown = ' ',
---   vert      = ' ',
---   vertleft  = ' ',
---   vertright = ' ',
---   verthoriz = ' ',
--- }
+vim.cmd [[au ColorScheme * hi VertSplit guibg=#282c34]]
+vim.opt.fillchars = {
+  horiz     = ' ',
+  horizup   = ' ',
+  horizdown = ' ',
+  vert      = ' ',
+  vertleft  = ' ',
+  vertright = ' ',
+  verthoriz = ' ',
+}
 -- vim.opt.timeoutlen = 750
 vim.opt.statuscolumn = "%s %l %r"
 
@@ -82,11 +82,15 @@ lvim.builtin.which_key.mappings["ss"] = {
 lvim.builtin.which_key.mappings["W"] = {
   "<cmd>set wrap!<cr>", "Toggle Word Wrap",
 }
-lvim.builtin.which_key.mappings["C"] = {
-  name = "Copilot Chat",
-  o = { "<cmd>CopilotChatOpen<cr>", "Open Chat Window" },
-  t = { "<cmd>CopilotChatToggle<cr>", "Toggle Chat Window" },
-  r = { "<cmd>CopilotChatReset<cr>", "Reset Chat Window" },
+-- lvim.builtin.which_key.mappings["C"] = {
+--   name = "Copilot Chat",
+--   o = { "<cmd>CopilotChatOpen<cr>", "Open Chat Window" },
+--   t = { "<cmd>CopilotChatToggle<cr>", "Toggle Chat Window" },
+--   r = { "<cmd>CopilotChatReset<cr>", "Reset Chat Window" },
+-- }
+lvim.builtin.which_key.mappings["U"] = {
+  name = "Utils",
+  S = { "<cmd>wshada!<cr>", "Clear ShaDa File" },
 }
 
 -- -- Change theme settings
@@ -145,9 +149,10 @@ lvim.builtin.treesitter.ensure_installed = {
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. IMPORTANT: Requires `:LvimCacheReset` to take effect
 -- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
--- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
---   return server ~= "emmet_ls"
--- end, lvim.lsp.automatic_configuration.skipped_servers)
+lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+  -- return server ~= "emmet_ls"
+  return server ~= "eslint"
+end, lvim.lsp.automatic_configuration.skipped_servers)
 
 -- -- you can set a custom on_attach function that will be used for all the language servers
 -- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
@@ -201,6 +206,7 @@ formatters.setup {
 lvim.plugins = {
   "olexsmir/gopher.nvim",
   "leoluz/nvim-dap-go",
+  "lambdalisue/vim-suda",
   {
     "tpope/vim-fugitive",
     cmd = {
@@ -336,31 +342,31 @@ lvim.plugins = {
       require("spectre").setup()
     end,
   },
-  {
-    "zbirenbaum/copilot-cmp",
-    event = "InsertEnter",
-    dependencies = { "zbirenbaum/copilot.lua" },
-    config = function()
-      vim.defer_fn(function()
-        require("copilot").setup()     -- https://github.com/zbirenbaum/copilot.lua/blob/master/README.md#setup-and-configuration
-        require("copilot_cmp").setup() -- https://github.com/zbirenbaum/copilot-cmp/blob/master/README.md#configuration
-      end, 100)
-    end,
-  },
-  -- 'gptlang/CopilotChat.nvim',
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "canary",
-    dependencies = {
-      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
-      { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
-    },
-    opts = {
-      debug = true, -- Enable debugging
-      -- See Configuration section for rest
-    },
-    -- See Commands section for default commands if you want to lazy load on them
-  },
+  -- {
+  --   "zbirenbaum/copilot-cmp",
+  --   event = "InsertEnter",
+  --   dependencies = { "zbirenbaum/copilot.lua" },
+  --   config = function()
+  --     vim.defer_fn(function()
+  --       require("copilot").setup()     -- https://github.com/zbirenbaum/copilot.lua/blob/master/README.md#setup-and-configuration
+  --       require("copilot_cmp").setup() -- https://github.com/zbirenbaum/copilot-cmp/blob/master/README.md#configuration
+  --     end, 100)
+  --   end,
+  -- },
+  -- -- 'gptlang/CopilotChat.nvim',
+  -- {
+  --   "CopilotC-Nvim/CopilotChat.nvim",
+  --   branch = "main",
+  --   dependencies = {
+  --     { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+  --     { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
+  --   },
+  --   opts = {
+  --     debug = true, -- Enable debugging
+  --     -- See Configuration section for rest
+  --   },
+  --   -- See Commands section for default commands if you want to lazy load on them
+  -- },
 }
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
@@ -401,17 +407,23 @@ dapgo.setup({
       request = 'launch',
       program = "/home/berin/repos/payment-api/cmd/api/main.go",
     },
+    -- {
+    --   type = 'go',
+    --   name = 'Launch Charge Worker',
+    --   request = 'launch',
+    --   program = "/home/berin/repos/payment-api/cmd/charge-worker/main.go",
+    -- },
+    -- {
+    --   type = 'go',
+    --   name = 'Launch Product Script',
+    --   request = 'launch',
+    --   program = "/home/berin/repos/payment-api/cmd/product-migration-script",
+    -- },
     {
       type = 'go',
-      name = 'Launch Charge Worker',
+      name = 'Launch SH API',
       request = 'launch',
-      program = "/home/berin/repos/payment-api/cmd/charge-worker/main.go",
-    },
-    {
-      type = 'go',
-      name = 'Launch Product Script',
-      request = 'launch',
-      program = "/home/berin/repos/payment-api/cmd/product-migration-script",
+      program = "/home/berin/repos/sorting-hat/cmd/api/main.go",
     },
   },
 })

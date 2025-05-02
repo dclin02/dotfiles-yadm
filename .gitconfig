@@ -29,3 +29,5 @@
 	updateRefs = true
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[safe]
+	directory = /home/daniel.lin/bat-extras
