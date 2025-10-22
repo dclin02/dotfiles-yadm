@@ -72,4 +72,3 @@ live_config_reload = true
 import = [
     "/home/daniel.lin/.config/alacritty/themes/themes/nord.toml"
 ]
-

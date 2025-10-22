@@ -17,8 +17,14 @@ if status is-interactive
   alias m="tmux attach-session -t main || tmux new -s main"
   alias tempo="curl 'wttr.in/~USP?2QF'"
   alias tempo2="curl 'v2.wttr.in/~USP?2QF'"
-  alias tf='terraform'
+  alias tf='/home/daniel.lin/.asdf/installs/terraform/1.5.5/bin/terraform'
+  # alias tf='terraform'
   alias kb "/home/daniel.lin/keyboard-configure.sh"
+  alias daily "/home/daniel.lin/daily"
+  alias obsidian "/home/daniel.lin/Applications/Obsidian/Obsidian-1.8.10.AppImage"
+  # alias gt "gotestsum --format-hide-empty-pkg --format testdox"
+  alias gt "gotestsum --format-hide-empty-pkg"
+  alias gcst "gcloud sql generate-login-token | xclip"
   direnv hook fish | source
   set -gx EDITOR lvim
   set -gx BROWSER /usr/bin/firefox
@@ -27,7 +33,7 @@ if status is-interactive
   abbr -a ld lazydocker
 
   # source /opt/asdf-vm/asdf.fish
-  source ~/.asdf/plugins/golang/set-env.fish
+  # source ~/.asdf/plugins/golang/set-env.fish
   # fnm env | source
 
   set -U -x RANGER_LOAD_DEFAULT_RC false
@@ -37,17 +43,18 @@ if status is-interactive
 
 
   # ASDF configuration code
-  if test -z $ASDF_DATA_DIR
-      set _asdf_shims "$HOME/.asdf/shims"
-  else
-      set _asdf_shims "$ASDF_DATA_DIR/shims"
-  end
+  # if test -z $ASDF_DATA_DIR
+  #     set _asdf_shims "$HOME/.asdf/shims"
+  # else
+  #     set _asdf_shims "$ASDF_DATA_DIR/shims"
+  # end
 
   # Do not use fish_add_path (added in Fish 3.2) because it
   # potentially changes the order of items in PATH
-  if not contains $_asdf_shims $PATH
-      set -gx --prepend PATH $_asdf_shims
-  end
-  set --erase _asdf_shims
+  # if not contains $_asdf_shims $PATH
+  #     set -gx --prepend PATH $_asdf_shims
+  # end
+  # set --erase _asdf_shims
 end
 
+fish_add_path $HOME/.local/bin

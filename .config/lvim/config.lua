@@ -403,27 +403,33 @@ dapgo.setup({
   dap_configurations = {
     {
       type = 'go',
-      name = 'Launch Main API',
+      name = 'Launch Payment API',
       request = 'launch',
-      program = "/home/berin/repos/payment-api/cmd/api/main.go",
+      program = "/home/daniel.lin/repos/payment-api/cmd/api/main.go",
+    },
+    {
+      name = 'Launch Unique MIgration',
+      type = 'go',
+      request = 'launch',
+      program = "/home/daniel.lin/repos/identity-etl/cmd/sortinghat/bulk-migrate-realm-unique",
     },
     -- {
     --   type = 'go',
     --   name = 'Launch Charge Worker',
     --   request = 'launch',
-    --   program = "/home/berin/repos/payment-api/cmd/charge-worker/main.go",
+    --   program = "/home/daniel.lin/repos/payment-api/cmd/charge-worker/main.go",
     -- },
     -- {
     --   type = 'go',
     --   name = 'Launch Product Script',
     --   request = 'launch',
-    --   program = "/home/berin/repos/payment-api/cmd/product-migration-script",
+    --   program = "/home/daniel.lin/repos/payment-api/cmd/product-migration-script",
     -- },
     {
       type = 'go',
       name = 'Launch SH API',
       request = 'launch',
-      program = "/home/berin/repos/sorting-hat/cmd/api/main.go",
+      program = "/home/daniel.lin/repos/sorting-hat/cmd/api/main.go",
     },
   },
 })
