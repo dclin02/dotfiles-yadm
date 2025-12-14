@@ -19,35 +19,35 @@ if status is-interactive
   alias tempo2="curl 'v2.wttr.in/~USP?2QF'"
   alias tf='terraform'
   alias kb "/home/berin/keyboard-configure.sh"
-  direnv hook fish | source
+  # direnv hook fish | source
   set -gx EDITOR lvim
   set -gx BROWSER /usr/bin/firefox
 
-  fish_add_path (go env GOPATH)/bin
+  # fish_add_path (go env GOPATH)/bin
   abbr -a ld lazydocker
 
   # ASDF configuration code
   # source /opt/asdf-vm/asdf.fish
-  if test -z $ASDF_DATA_DIR
-      set _asdf_shims "$HOME/.asdf/shims"
-  else
-      set _asdf_shims "$ASDF_DATA_DIR/shims"
-  end
+  # if test -z $ASDF_DATA_DIR
+  #    set _asdf_shims "$HOME/.asdf/shims"
+  # else
+  #    set _asdf_shims "$ASDF_DATA_DIR/shims"
+  # end
 
   # Do not use fish_add_path (added in Fish 3.2) because it
   # potentially changes the order of items in PATH
-  if not contains $_asdf_shims $PATH
-      set -gx --prepend PATH $_asdf_shims
-  end
-  set --erase _asdf_shims
-  asdf completion fish > ~/.config/fish/completions/asdf.fish
+  # if not contains $_asdf_shims $PATH
+  #    set -gx --prepend PATH $_asdf_shims
+  # end
+  # set --erase _asdf_shims
+  # asdf completion fish > ~/.config/fish/completions/asdf.fish
 
-  source ~/.asdf/plugins/golang/set-env.fish
+  # source ~/.asdf/plugins/golang/set-env.fish
   # fnm env | source
 
   set -U -x RANGER_LOAD_DEFAULT_RC false
 
-  pyenv init - fish | source
+  # pyenv init - fish | source
 
   # The next line updates PATH for the Google Cloud SDK.
   if [ -f '/home/berin/google-cloud-sdk/path.fish.inc' ]; . '/home/berin/google-cloud-sdk/path.fish.inc'; end
