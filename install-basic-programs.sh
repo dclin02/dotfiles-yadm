@@ -10,4 +10,5 @@ yay -S ibus\
 	cargo\
 	npm\
   python-i3ipc\
+  xcape\
 	otf-monaspace-nerd
