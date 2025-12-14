@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 tmux has-session -t dropdown 2>/dev/null

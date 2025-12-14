@@ -7,7 +7,8 @@ DROPDOWN_IDENTIFIER = "dropdown_alacritty_layout"
 DROPDOWN_CHILD_IDENTIFIER = "dropdown_alacritty"
 INITIAL_TERMINAL_QUANTITY = 1
 # TERMINAL_COMMAND = f"wezterm start --class {DROPDOWN_CHILD_IDENTIFIER} -- /usr/bin/fish -c '/home/berin/.config/i3/scripts/tmux-drop && tmux attach-session -t dropdown'"
-TERMINAL_COMMAND = f"alacritty --class {DROPDOWN_CHILD_IDENTIFIER} -e /usr/bin/fish -c '/home/berin/.config/i3/scripts/tmux-drop && tmux attach-session -t dropdown'"
+# TERMINAL_COMMAND = f"alacritty --class {DROPDOWN_CHILD_IDENTIFIER} -e /usr/bin/fish -c '/home/berin/.config/i3/scripts/tmux-drop && tmux attach-session -t dropdown'"
+TERMINAL_COMMAND = f"alacritty --class {DROPDOWN_CHILD_IDENTIFIER} -e /usr/bin/fish -c 'tmux attach-session -t dropdown || tmux new -s dropdown'"
 HEIGHT_PERCENTAGE = 50
 WIDTH_PERCENTAGE = 95
 
