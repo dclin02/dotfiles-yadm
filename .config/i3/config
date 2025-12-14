@@ -23,7 +23,8 @@
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango: Noto Sans Regular 10
+# font pango: Noto Sans Regular 10
+font pango: MonaspiceNe Nerd Font 10
 
 # set the mod key to the winkey:
 set $mod Mod4
@@ -59,7 +60,7 @@ new_window pixel 1
 # gaps outer 3
 
 smart_borders on
-smart_gaps on
+# smart_gaps on
 gaps inner 6
 gaps outer 3
 
@@ -178,8 +179,8 @@ mode "resize" {
 # bindsym $mod+Return exec --no-startup-id wezterm
 bindsym $mod+Return exec --no-startup-id alacritty
 
-bindsym $mod+t exec --no-startup-id python /home/berin/.config/i3/scripts/i3drop-fs.py
-# bindsym $mod+t workspace $ws2
+# bindsym $mod+t exec --no-startup-id python /home/berin/.config/i3/scripts/i3drop-fs.py
+bindsym $mod+t workspace $ws2
 bindsym $mod+Shift+t move container to workspace $ws2; workspace $ws2
 bindsym $mod+Ctrl+t move container to workspace $ws2
 bindsym $mod+d exec --no-startup-id python /home/berin/.config/i3/scripts/i3drop.py
@@ -221,7 +222,8 @@ mode "$mode_system" {
 # lock by blurring the screen:
 #bindsym $mod+l exec --no-startup-id ~/.config/i3/scripts/blur-lock
 bindsym $mod+F11 exec --no-startup-id ~/.config/i3/scripts/blur-lock
-exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 600 'blurlock' ''
+exec --no-startup-id xss-lock -l ~/.config/i3/scripts/blur-lock
+# exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 600 'blurlock' ''
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -236,11 +238,20 @@ bindsym $mod+F1 exec --no-startup-id ~/.config/i3/scripts/keyhint-2
 # bindsym $mod+F1 exec --no-startup-id xed ~/.config/i3/keybindings
 
 # Backlight control
-#bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +10 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
-#bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -10 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
+# bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +10 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
+# bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -10 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
 # Backlight setting using dunst osc
 bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh brightness_up
 bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh brightness_down
+
+#bindsym XF86MonBrightnessUp   exec --no-startup-id ~/.config/i3/scripts/volume_brightness2.sh screen_brightness_up
+#bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/i3/scripts/volume_brightness2.sh screen_brightness_down
+
+# alternative screen & keyboard brightness setting with brightnessctl using dunst osc
+# install brightnessctl (sudo pacman -S brightnessctl)
+# keyboard backlight setting using brightnessctl
+#bindsym Mod1+space       exec --no-startup-id ~/.config/i3/scripts/volume_brightness2.sh keyboard_brightness_up
+#bindsym Mod1+Shift+space exec --no-startup-id ~/.config/i3/scripts/volume_brightness2.sh keyboard_brightness_down
 
 # change focus
 bindsym $mod+h focus left
@@ -335,8 +346,8 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
-# Redirect sound to headphones
-# bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
+# toggle between audio devices for output
+# bindsym $mod+p exec --no-startup-id ~/.config/i3/scripts/audio-device-switch
 
 ## App shortcuts
 bindsym $mod+F2 exec --no-startup-id /usr/bin/firefox
@@ -444,6 +455,9 @@ workspace $ws15 output eDP-1
 # for_window [class=Thunderbird] focus
 # for_window [class=TelegramDesktop] focus
 
+# make sure it loads gtk configs
+exec_always $HOME/.config/i3/scripts/import-gsettings
+
 ##############
 # compositor #
 ##############
@@ -456,9 +470,9 @@ workspace $ws15 output eDP-1
 # xcompmgr: https://wiki.archlinux.org/title/Xcompmgr
 # manpage: https://man.archlinux.org/man/xcompmgr.1.en
 # install xcompmgr package to use it (yay -S xcompmgr)
-#exec --no-startup-id xcompmgr -C -n &
+exec --no-startup-id xcompmgr -C -n &
 # or an more specialized config like this:
-#exec --no-startup-id xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
+# exec --no-startup-id xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
 #
 # or:
 #
@@ -502,7 +516,8 @@ exec --no-startup-id /home/berin/.config/i3/scripts/xkb-caps-lock.sh
 exec --no-startup-id xcape -e "#66=Escape"
 exec --no-startup-id setxkbmap -option 'caps:ctrl_modifier'
 exec --no-startup-id xset r rate 200 45
-exec --no-startup-id xset s off && xset -dpms && xset s noblank
+# exec --no-startup-id xset s off && xset -dpms && xset s noblank
+# exec --no-startup-id xset s 480 dpms 600 600 600
 
 exec --no-startup-id unclutter
 exec --no-startup-id /usr/lib/kdeconnectd
@@ -518,7 +533,8 @@ exec --no-startup-id ibus-daemon -drx
 # start a script to setup displays
 # uncomment the next line, use arandr to setup displays and save the file as monitor:
 # exec --no-startup-id feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png && sleep 1 && ~/.screenlayout/monitor.sh && sleep 1 && feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
-exec --no-startup-id feh --bg-max /usr/share/backgrounds/Fuwafuwa_nanbatto_san_by_amaral-dark.png && sleep 1 && ~/.screenlayout/monitor.sh && sleep 1 && feh --bg-max /usr/share/backgrounds/Fuwafuwa_nanbatto_san_by_amaral-dark.png
+# exec --no-startup-id feh --bg-max /usr/share/backgrounds/Fuwafuwa_nanbatto_san_by_amaral-dark.png && sleep 1 && ~/.screenlayout/monitor.sh && sleep 1 && feh --bg-max /usr/share/backgrounds/Fuwafuwa_nanbatto_san_by_amaral-dark.png
+exec --no-startup-id feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png && sleep 1 && ~/.screenlayout/monitor.sh && sleep 1 && feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
 # exec xsetroot -solid "#000000" && sleep 1 && ~/.screenlayout/monitor.sh
 
 # set wallpaper
@@ -671,7 +687,8 @@ client.focused_inactive     #3b4252 #3b4252 #ffffff #484e50   #5f676a
 bindsym $mod+m bar mode toggle
 bar {
 		# font pango: Noto Sans Regular 10
-		font pango: Monaspace Neon Regular 10
+		font pango: MonaspiceNe Nerd Font 10
+		# font pango: Monaspace Neon Regular 10
 		status_command i3blocks -c ~/.config/i3/i3blocks.conf
 	    	position bottom
 #	    	i3bar_command i3bar --transparency
