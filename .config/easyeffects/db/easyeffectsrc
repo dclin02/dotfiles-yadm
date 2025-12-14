@@ -1,0 +1,21 @@
+[Presets]
+lastLoadedOutputPreset=current3 - john haven 20220622 with extra bass
+
+[StreamInputs]
+inputDevice=alsa_input.usb-046d_HD_Pro_Webcam_C920_F95B80DF-02.analog-stereo
+
+[StreamOutputs]
+mostUsedPresets=current3 - john haven 20220622 with extra bass
+outputDevice=alsa_output.usb-Topping_DX3_Pro_-00.HiFi__Headphones__sink
+plugins=equalizer#4,equalizer#5,equalizer#7,equalizer#8,equalizer#9,equalizer#10
+usedPresets=current3 - john haven 20220622 with extra bass:1
+visiblePage=pluginsPage
+visiblePlugin=equalizer#7
+
+[Style]
+forceBreezeTheme=false
+
+[Window]
+autostartOnLogin=true
+height=896
+width=1518
