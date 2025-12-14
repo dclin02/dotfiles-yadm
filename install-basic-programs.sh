@@ -1,4 +1,6 @@
 yay -S ibus\
+  python-i3ipc\
+  xcompmgr\
 	blueberry\
 	yadm\
 	neovim\
@@ -11,4 +13,16 @@ yay -S ibus\
 	npm\
   python-i3ipc\
   xcape\
+  unclutter\
+  xfce4-clipman-plugin\
+  bottom\
+  procs\
+  lsp-plugins\
+  lsp-plugins-lv2\
+  kdeconnect\
+  speedcrunch\
+  bat\
+  bat-extras\
+  lazygit\
+  eza\
 	otf-monaspace-nerd
