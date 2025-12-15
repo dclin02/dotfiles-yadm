@@ -1,0 +1,101 @@
+{
+  "border": "pixel",
+  "current_border_width": -1,
+  "floating": "auto_off",
+  "fullscreen_mode": 1,
+  "geometry": {
+    "x": 0,
+    "y": 0,
+    "width": 0,
+    "height": 0
+  },
+  "layout": "splith",
+  "marks": [],
+  "name": "0",
+  "orientation": "horizontal",
+  "percent": 0.3333333333333333,
+  "scratchpad_state": "none",
+  "sticky": false,
+  "type": "workspace",
+  "workspace_layout": "tabbed",
+  "output": "eDP-1",
+  "nodes": [
+    {
+      "border": "pixel",
+      "current_border_width": -1,
+      "floating": "auto_off",
+      "fullscreen_mode": 0,
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "layout": "splith",
+      "marks": [],
+      "name": null,
+      "orientation": "horizontal",
+      "percent": 1.0,
+      "scratchpad_state": "none",
+      "sticky": false,
+      "type": "con",
+      "workspace_layout": "default",
+      "nodes": [
+        {
+          "border": "pixel",
+          "current_border_width": 1,
+          "floating": "auto_off",
+          "fullscreen_mode": 0,
+          "geometry": {
+            "x": 1467,
+            "y": 1520,
+            "width": 754,
+            "height": 915
+          },
+          "layout": "splith",
+          "marks": [],
+          "name": "Toggl Track - Chromium",
+          "orientation": "none",
+          "percent": 0.5,
+          "scratchpad_state": "none",
+          "sticky": false,
+          "type": "con",
+          "workspace_layout": "default",
+          "swallows": [
+            {
+              "class": "Chromium",
+              "instance": "chromium"
+            }
+          ]
+        },
+        {
+          "border": "pixel",
+          "current_border_width": 1,
+          "floating": "auto_off",
+          "fullscreen_mode": 0,
+          "geometry": {
+            "x": 2229,
+            "y": 1520,
+            "width": 754,
+            "height": 915
+          },
+          "layout": "splith",
+          "marks": [],
+          "name": "Arco - Calendar - Week of October 27, 2025 - Chromium",
+          "orientation": "none",
+          "percent": 0.5,
+          "scratchpad_state": "none",
+          "sticky": false,
+          "type": "con",
+          "workspace_layout": "default",
+          "swallows": [
+            {
+              "class": "Chromium",
+              "instance": "chromium"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

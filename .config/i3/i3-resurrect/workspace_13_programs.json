@@ -1,0 +1,23 @@
+[
+  {
+    "command": [
+      "/snap/firefox/6042/usr/lib/firefox/firefox"
+    ],
+    "working_directory": "/home/daniel.lin"
+  },
+  {
+    "command": [
+      "/snap/firefox/6042/usr/lib/firefox/firefox"
+    ],
+    "working_directory": "/home/daniel.lin"
+  },
+  {
+    "command": [
+      "/snap/slack/196/usr/lib/slack/slack",
+      "--no-sandbox",
+      "--executed-from=/home/daniel.lin",
+      "--pid=9930"
+    ],
+    "working_directory": "/home/daniel.lin"
+  }
+]

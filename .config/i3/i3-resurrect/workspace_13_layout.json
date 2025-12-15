@@ -1,0 +1,174 @@
+{
+  "border": "pixel",
+  "current_border_width": -1,
+  "floating": "auto_off",
+  "fullscreen_mode": 1,
+  "geometry": {
+    "x": 0,
+    "y": 0,
+    "width": 0,
+    "height": 0
+  },
+  "layout": "splith",
+  "marks": [],
+  "name": "13",
+  "orientation": "horizontal",
+  "percent": 0.3333333333333333,
+  "scratchpad_state": "none",
+  "sticky": false,
+  "type": "workspace",
+  "workspace_layout": "default",
+  "output": "eDP-1",
+  "nodes": [
+    {
+      "border": "pixel",
+      "current_border_width": -1,
+      "floating": "auto_off",
+      "fullscreen_mode": 0,
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "layout": "splith",
+      "marks": [],
+      "name": null,
+      "orientation": "horizontal",
+      "percent": 1.0,
+      "scratchpad_state": "none",
+      "sticky": false,
+      "type": "con",
+      "workspace_layout": "default",
+      "nodes": [
+        {
+          "border": "pixel",
+          "current_border_width": -1,
+          "floating": "auto_off",
+          "fullscreen_mode": 0,
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "layout": "splitv",
+          "marks": [],
+          "name": null,
+          "orientation": "vertical",
+          "percent": 0.5,
+          "scratchpad_state": "none",
+          "sticky": false,
+          "type": "con",
+          "workspace_layout": "default",
+          "nodes": [
+            {
+              "border": "pixel",
+              "current_border_width": 1,
+              "floating": "auto_off",
+              "fullscreen_mode": 0,
+              "geometry": {
+                "x": 1466,
+                "y": 1519,
+                "width": 948,
+                "height": 575
+              },
+              "layout": "splith",
+              "marks": [],
+              "name": "Arco - Calendar - Week of April 20, 2025 \u2014 Mozilla Firefox",
+              "orientation": "none",
+              "percent": 0.5738095238095239,
+              "scratchpad_state": "none",
+              "sticky": false,
+              "type": "con",
+              "workspace_layout": "default",
+              "swallows": [
+                {
+                  "class": "firefox_firefox",
+                  "title": "Arco\\ \\-\\ Calendar\\ \\-\\ Week\\ of\\ April\\ 20,\\ 2025\\ \u2014\\ Mozilla\\ Firefox"
+                }
+              ]
+            },
+            {
+              "border": "pixel",
+              "current_border_width": 1,
+              "floating": "auto_off",
+              "fullscreen_mode": 0,
+              "geometry": {
+                "x": 1466,
+                "y": 1519,
+                "width": 946,
+                "height": 1155
+              },
+              "layout": "splith",
+              "marks": [],
+              "name": "Toggl Track \u2014 Mozilla Firefox",
+              "orientation": "none",
+              "percent": 0.42619047619047623,
+              "scratchpad_state": "none",
+              "sticky": false,
+              "type": "con",
+              "workspace_layout": "default",
+              "swallows": [
+                {
+                  "class": "firefox_firefox",
+                  "title": "Toggl\\ Track\\ \u2014\\ Mozilla\\ Firefox"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "border": "pixel",
+          "current_border_width": -1,
+          "floating": "auto_off",
+          "fullscreen_mode": 0,
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "layout": "splitv",
+          "marks": [],
+          "name": null,
+          "orientation": "vertical",
+          "percent": 0.5,
+          "scratchpad_state": "none",
+          "sticky": false,
+          "type": "con",
+          "workspace_layout": "default",
+          "nodes": [
+            {
+              "border": "pixel",
+              "current_border_width": 1,
+              "floating": "auto_off",
+              "fullscreen_mode": 0,
+              "geometry": {
+                "x": 2421,
+                "y": 1520,
+                "width": 946,
+                "height": 1155
+              },
+              "layout": "splith",
+              "marks": [],
+              "name": "Canvas in @Lin - Arco - Slack",
+              "orientation": "none",
+              "percent": 1.0,
+              "scratchpad_state": "none",
+              "sticky": false,
+              "type": "con",
+              "workspace_layout": "default",
+              "swallows": [
+                {
+                  "class": "Slack",
+                  "title": "Canvas\\ in\\ @Lin\\ \\-\\ Arco\\ \\-\\ Slack"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

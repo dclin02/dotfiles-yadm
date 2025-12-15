@@ -1,0 +1,20 @@
+[
+  {
+    "command": [
+      "/snap/chromium/3265/usr/lib/chromium-browser/chrome",
+      "--password-store=basic",
+      "--gtk-version=3",
+      "--disable-features=TFLiteLanguageDetectionEnabled"
+    ],
+    "working_directory": "/home/daniel.lin"
+  },
+  {
+    "command": [
+      "/snap/chromium/3265/usr/lib/chromium-browser/chrome",
+      "--password-store=basic",
+      "--gtk-version=3",
+      "--disable-features=TFLiteLanguageDetectionEnabled"
+    ],
+    "working_directory": "/home/daniel.lin"
+  }
+]

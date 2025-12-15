@@ -1,0 +1,148 @@
+{
+  "border": "pixel",
+  "current_border_width": -1,
+  "floating": "auto_off",
+  "fullscreen_mode": 1,
+  "geometry": {
+    "x": 0,
+    "y": 0,
+    "width": 0,
+    "height": 0
+  },
+  "layout": "splitv",
+  "marks": [],
+  "name": "10",
+  "orientation": "vertical",
+  "percent": 1.0,
+  "scratchpad_state": "none",
+  "sticky": false,
+  "type": "workspace",
+  "workspace_layout": "default",
+  "output": "DP-3",
+  "nodes": [
+    {
+      "border": "pixel",
+      "current_border_width": -1,
+      "floating": "auto_off",
+      "fullscreen_mode": 0,
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "layout": "splitv",
+      "marks": [],
+      "name": null,
+      "orientation": "vertical",
+      "percent": 1.0,
+      "scratchpad_state": "none",
+      "sticky": false,
+      "type": "con",
+      "workspace_layout": "default",
+      "nodes": [
+        {
+          "border": "none",
+          "current_border_width": 1,
+          "floating": "auto_off",
+          "fullscreen_mode": 0,
+          "geometry": {
+            "x": 3649,
+            "y": 9,
+            "width": 1062,
+            "height": 935
+          },
+          "layout": "splith",
+          "marks": [],
+          "name": "2FA - Obsidian Vault - Obsidian v1.9.14",
+          "orientation": "none",
+          "percent": 0.6000000000000001,
+          "scratchpad_state": "none",
+          "sticky": false,
+          "type": "con",
+          "workspace_layout": "default",
+          "swallows": [
+            {
+              "class": "obsidian"
+            }
+          ]
+        },
+        {
+          "border": "pixel",
+          "current_border_width": -1,
+          "floating": "auto_off",
+          "fullscreen_mode": 0,
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "layout": "tabbed",
+          "marks": [],
+          "name": null,
+          "orientation": "horizontal",
+          "percent": 0.4,
+          "scratchpad_state": "none",
+          "sticky": false,
+          "type": "con",
+          "workspace_layout": "default",
+          "nodes": [
+            {
+              "border": "pixel",
+              "current_border_width": 1,
+              "floating": "auto_off",
+              "fullscreen_mode": 0,
+              "geometry": {
+                "x": 140,
+                "y": 660,
+                "width": 800,
+                "height": 600
+              },
+              "layout": "splith",
+              "marks": [],
+              "name": "Identidade \u203a Active issues",
+              "orientation": "none",
+              "percent": 0.5,
+              "scratchpad_state": "none",
+              "sticky": false,
+              "type": "con",
+              "workspace_layout": "default",
+              "swallows": [
+                {
+                  "class": "linear\\-linux"
+                }
+              ]
+            },
+            {
+              "border": "pixel",
+              "current_border_width": 1,
+              "floating": "auto_off",
+              "fullscreen_mode": 0,
+              "geometry": {
+                "x": 3650,
+                "y": 974,
+                "width": 1060,
+                "height": 911
+              },
+              "layout": "splith",
+              "marks": [],
+              "name": "Kanban (List) - Arco - Slack",
+              "orientation": "none",
+              "percent": 0.5,
+              "scratchpad_state": "none",
+              "sticky": false,
+              "type": "con",
+              "workspace_layout": "default",
+              "swallows": [
+                {
+                  "class": "Slack"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

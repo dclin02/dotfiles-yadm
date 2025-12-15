@@ -59,7 +59,7 @@ new_window pixel 1
 # gaps outer 3
 
 smart_borders on
-smart_gaps on
+# smart_gaps on
 gaps inner 6
 gaps outer 3
 
@@ -178,8 +178,8 @@ mode "resize" {
 # bindsym $mod+Return exec --no-startup-id wezterm
 bindsym $mod+Return exec --no-startup-id alacritty
 
-bindsym $mod+t exec --no-startup-id python /home/daniel.lin/.config/i3/scripts/i3drop-fs.py
-# bindsym $mod+t workspace $ws2
+# bindsym $mod+t exec --no-startup-id python /home/daniel.lin/.config/i3/scripts/i3drop-fs.py
+bindsym $mod+t workspace $ws2
 bindsym $mod+Shift+t move container to workspace $ws2; workspace $ws2
 bindsym $mod+Ctrl+t move container to workspace $ws2
 bindsym $mod+d exec --no-startup-id python /home/daniel.lin/.config/i3/scripts/i3drop.py
@@ -366,28 +366,30 @@ bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles
 # set $ws4 "4:"
 # set $ws5 "5:"
 set $ws0 "0"
-# set $ws1 "1:"
-set $ws1 "1"
-# set $ws2 "2:"
-set $ws2 "2"
+set $ws1 "1:"
+# set $ws1 "1"
+set $ws2 "2:"
+# set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
-# set $ws5 "5:"
-set $ws5 "5"
-# set $ws6 "6:"
-set $ws6 "6"
-# set $ws7 "7:"
-set $ws7 "7"
+set $ws5 "5:"
+# set $ws5 "5"
+set $ws6 "6:"
+# set $ws6 "6"
+set $ws7 "7:"
+# set $ws7 "7"
 # set $ws8 "8:󰝚"
 set $ws8 "8"
-# set $ws9 "9:"
-set $ws9 "9"
+set $ws9 "9:"
+# set $ws9 "9"
 # set $ws10 "10:"
 set $ws10 "10"
-set $ws11 "11"
+# set $ws11 "11"
+set $ws11 "11:"
 set $ws12 "12"
 set $ws13 "13"
-set $ws14 "14"
+# set $ws14 "14"
+set $ws14 "14:󰝚"
 set $ws15 "15"
 set $ws16 "16"
 
@@ -407,7 +409,8 @@ workspace $ws8 output DP-1
 workspace $ws9 output DP-3
 workspace $ws10 output DP-3
 workspace $ws11 output DP-3
-workspace $ws12 output DP-3
+# workspace $ws12 output DP-3
+workspace $ws12 output HDMI-1
 workspace $ws13 output eDP-1
 workspace $ws14 output eDP-1
 workspace $ws15 output eDP-1
@@ -458,7 +461,7 @@ workspace $ws15 output eDP-1
 # install xcompmgr package to use it (yay -S xcompmgr)
 #exec --no-startup-id xcompmgr -C -n &
 # or an more specialized config like this:
-#exec --no-startup-id xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
+exec --no-startup-id xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
 #
 # or:
 #

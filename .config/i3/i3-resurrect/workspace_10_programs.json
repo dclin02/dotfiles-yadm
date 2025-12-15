@@ -1,0 +1,25 @@
+[
+  {
+    "command": [
+      "/tmp/.mount_ObsidiZUdB5Z/obsidian"
+    ],
+    "working_directory": "/home/daniel.lin"
+  },
+  {
+    "command": [
+      "/tmp/.mount_linearA4lxUT/linear-linux"
+    ],
+    "working_directory": "/home/daniel.lin"
+  },
+  {
+    "command": [
+      "/snap/slack/216/usr/lib/slack/slack",
+      "--no-sandbox",
+      "BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/slack_slack.desktop",
+      "/snap/bin/slack",
+      "--executed-from=/home/daniel.lin",
+      "--pid=7691"
+    ],
+    "working_directory": "/home/daniel.lin"
+  }
+]
