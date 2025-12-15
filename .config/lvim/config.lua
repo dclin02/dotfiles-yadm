@@ -9,6 +9,7 @@ vim.opt.relativenumber = true
 vim.opt.shell = "/bin/bash"
 vim.cmd [[set jumpoptions+=stack]]
 vim.cmd [[au ColorScheme * hi VertSplit guibg=#282c34]]
+lvim.transparent_window = true
 vim.opt.fillchars = {
   horiz     = ' ',
   horizup   = ' ',
