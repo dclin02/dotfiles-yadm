@@ -517,7 +517,8 @@ exec --no-startup-id kdeconnect-indicator
 # start a script to setup displays
 # uncomment the next line, use arandr to setup displays and save the file as monitor:
 # exec --no-startup-id feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png && sleep 1 && ~/.screenlayout/monitor.sh && sleep 1 && feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
-exec --no-startup-id feh --bg-max /usr/share/backgrounds/Fuwafuwa_nanbatto_san_by_amaral-dark.png && sleep 1 && ~/.screenlayout/monitor.sh && sleep 1 && feh --bg-max /usr/share/backgrounds/Fuwafuwa_nanbatto_san_by_amaral-dark.png
+# exec --no-startup-id feh --bg-max /usr/share/backgrounds/Fuwafuwa_nanbatto_san_by_amaral-dark.png && sleep 1 && ~/.screenlayout/monitor.sh && sleep 1 && feh --bg-max /usr/share/backgrounds/Fuwafuwa_nanbatto_san_by_amaral-dark.png
+exec --no-startup-id feh --bg-max /home/daniel.lin/Pictures/JWST/6.jp && sleep 1 && ~/.screenlayout/monitor.sh && sleep 1 && feh --bg-max /home/daniel.lin/Pictures/JWST/6.jp
 # exec xsetroot -solid "#000000" && sleep 1 && ~/.screenlayout/monitor.sh
 
 # set wallpaper
