@@ -10,6 +10,9 @@ return {
         shell = "fish",
       },
       picker = {
+        exclude = {
+          "mocks",
+        },
         sources = {
           explorer = {
             hidden = true,
