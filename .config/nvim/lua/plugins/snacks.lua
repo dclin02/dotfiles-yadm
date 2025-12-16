@@ -9,6 +9,14 @@ return {
         -- refer to the configuration section below
         shell = "fish",
       },
+      picker = {
+        sources = {
+          explorer = {
+            hidden = true,
+            ignored = true,
+          },
+        },
+      },
     },
   },
 }

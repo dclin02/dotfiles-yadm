@@ -9,6 +9,12 @@ return {
             size = 0.2,
           },
         },
+        lsp_document_symbols = {
+          win = {
+            position = "right",
+            size = 0.2,
+          },
+        },
       },
     },
   },
