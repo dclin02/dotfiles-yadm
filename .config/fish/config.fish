@@ -27,6 +27,7 @@ if status is-interactive
     alias gcst "gcloud sql generate-login-token | xclip"
     alias avim "NVIM_APPNAME=astronvim nvim"
     alias lvim nvim
+    alias vim "nvim --clean"
     direnv hook fish | source
     set -gx EDITOR nvim
     set -gx BROWSER /usr/bin/firefox
