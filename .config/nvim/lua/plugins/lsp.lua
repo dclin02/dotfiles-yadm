@@ -6,13 +6,7 @@ return {
         gopls = {
           settings = {
             gopls = {
-              -- ... other gopls settings
-              directoryFilters = {
-                "-**/node_modules", -- Example: Exclude node_modules at any depth
-                "-**/mocks",
-                "-.git", -- Example: Exclude .git folder
-              },
-              -- ...
+              directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules", "-mocks" },
             },
           },
         },
