@@ -8,7 +8,7 @@ xrandr \
   # --output HDMI-A-1-1 --mode 1920x1080 --right-of DisplayPort-1 --rotate right
   sleep 1 &&
   xrandr \
-    --output eDP-1 --mode 1920x1200 --rate 60 --pos 1595 --rotate normal --scale 0.80x0.80 \
+    --output eDP-1 --mode 1920x1200 --rate 60 --pos 1595x1480 --rotate normal --scale 0.80x0.80 \
     --output HDMI-1 --primary --mode 2560x1440 --rate 120 --pos 1080x40 --rotate normal \
     --output DP-1 --rate 120 --mode 1920x1080 --pos 0x0 --rotate left \
     --output DP-3 --rate 75 --mode 1920x1080 --pos 3640x0 --rotate right
