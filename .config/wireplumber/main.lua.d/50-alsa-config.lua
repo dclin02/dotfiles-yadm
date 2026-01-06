@@ -62,7 +62,6 @@ alsa_monitor.rules = {
 		apply_properties = {
 			["audio.format"] = "S32LE",
 			["audio.allowed-rates"] = "44100, 48000, 88200, 96000, 176400, 192000, 352800, 384000",
-			["resample.quality"] = 10,
 		},
 	},
 	{
@@ -133,7 +132,7 @@ alsa_monitor.rules = {
 			--["priority.session"]       = 100,
 			--["node.pause-on-idle"]     = false,
 			--["monitor.channel-volumes"] = false
-			["resample.quality"] = 10,
+			-- ["resample.quality"] = 10,
 			--["resample.disable"]       = false,
 			--["channelmix.normalize"]   = false,
 			--["channelmix.mix-lfe"]     = false,
