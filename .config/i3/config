@@ -23,7 +23,8 @@
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango: Noto Sans Regular 10
+# font pango: Noto Sans Regular 10
+font pango: MonaspiceNe Nerd Font Regular 10
 
 # set the mod key to the winkey:
 set $mod Mod4
@@ -179,9 +180,10 @@ mode "resize" {
 bindsym $mod+Return exec --no-startup-id alacritty
 
 # bindsym $mod+t exec --no-startup-id python /home/daniel.lin/.config/i3/scripts/i3drop-fs.py
+bindsym $mod+Shift+t exec --no-startup-id python /home/daniel.lin/.config/i3/scripts/i3drop-fs.py
 bindsym $mod+t workspace $ws2
-bindsym $mod+Shift+t move container to workspace $ws2; workspace $ws2
-bindsym $mod+Ctrl+t move container to workspace $ws2
+# bindsym $mod+Shift+t move container to workspace $ws2; workspace $ws2
+# bindsym $mod+Ctrl+t move container to workspace $ws2
 bindsym $mod+d exec --no-startup-id python /home/daniel.lin/.config/i3/scripts/i3drop.py
 bindsym $mod+c exec --no-startup-id /home/daniel.lin/.config/i3/scripts/i3-show-calc
 # bindsym $mod+c exec --no-startup-id python /home/daniel.lin/.i3/i3drop-calc.py
@@ -365,31 +367,33 @@ bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles
 # set $ws3 "3:"
 # set $ws4 "4:"
 # set $ws5 "5:"
-set $ws0 "0"
-set $ws1 "1:"
+set $ws0 "0: "
+set $ws1 "1: "
 # set $ws1 "1"
-set $ws2 "2:"
+set $ws2 "2: "
 # set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
-set $ws5 "5:"
+set $ws5 "5: "
 # set $ws5 "5"
-set $ws6 "6:"
+set $ws6 "6: "
 # set $ws6 "6"
-set $ws7 "7:"
+set $ws7 "7: "
 # set $ws7 "7"
 # set $ws8 "8:󰝚"
 set $ws8 "8"
-set $ws9 "9:"
+set $ws9 "9: "
 # set $ws9 "9"
 # set $ws10 "10:"
-set $ws10 "10"
+# set $ws10 "10"
+# set $ws10 "10:✎"
+set $ws10 "10:󰎛 "
 # set $ws11 "11"
-set $ws11 "11:"
+set $ws11 "11: "
 set $ws12 "12"
 set $ws13 "13"
 # set $ws14 "14"
-set $ws14 "14:󰝚"
+set $ws14 "14:󰝚 "
 set $ws15 "15"
 set $ws16 "16"
 
@@ -671,7 +675,8 @@ client.focused_inactive     #3b4252 #3b4252 #ffffff #484e50   #5f676a
 bindsym $mod+m bar mode toggle
 bar {
 		# font pango: Noto Sans Regular 10
-		font pango: Monaspace Neon Regular 10
+		# font pango: Monaspace Neon Regular 10
+    font pango: MonaspiceNe Nerd Font Regular 10
 		status_command i3blocks -c ~/.config/i3/i3blocks.conf
 	    	position bottom
 #	    	i3bar_command i3bar --transparency
