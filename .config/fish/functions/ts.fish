@@ -1,7 +1,7 @@
 function ts
     set raw $argv[1]
     set t (string trim -- "$raw")
-    set t (string replace -r -- '[^0-9]' '' "$t")
+    set t (string replace -ar -- '[^0-9]' '' "$t")
 
     if test -z "$t"
         echo "Usage: ts <timestamp seconds|milliseconds>"
