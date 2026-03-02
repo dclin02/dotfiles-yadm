@@ -387,7 +387,7 @@ set $ws9 "9: "
 # set $ws10 "10:"
 # set $ws10 "10"
 # set $ws10 "10:✎"
-set $ws10 "10:󰎛 "
+set $ws10 "10:󰎛"
 # set $ws11 "11"
 set $ws11 "11: "
 set $ws12 "12"
@@ -402,40 +402,40 @@ set $ws16 "16"
 # you can get from xrandr command
 # default setup for home use
 workspace $ws0 output eDP-1
-workspace $ws1 output HDMI-1
-workspace $ws2 output HDMI-1
-workspace $ws3 output HDMI-1
-workspace $ws4 output HDMI-1
-workspace $ws5 output DP-1
-workspace $ws6 output DP-1
-workspace $ws7 output DP-1
-workspace $ws8 output DP-1
-workspace $ws9 output DP-3
-workspace $ws10 output DP-3
-workspace $ws11 output DP-3
-# workspace $ws12 output DP-3
-workspace $ws12 output HDMI-1
+workspace $ws1 output DP-1-2
+workspace $ws2 output DP-1-2
+workspace $ws3 output DP-1-2
+workspace $ws4 output DP-1-2
+workspace $ws5 output DP-1-1
+workspace $ws6 output DP-1-1
+workspace $ws7 output DP-1-1
+workspace $ws8 output DP-1-1
+workspace $ws9 output DP-1-3
+workspace $ws10 output DP-1-3
+workspace $ws11 output DP-1-3
+# workspace $ws12 output DP-1-3
+workspace $ws12 output DP-1-2
 workspace $ws13 output eDP-1
 workspace $ws14 output eDP-1
 workspace $ws15 output eDP-1
 
 # one extra monitor setup
 # workspace $ws0 output eDP-1
-# workspace $ws1 output HDMI-1
-# workspace $ws2 output HDMI-1
-# workspace $ws3 output HDMI-1
-# workspace $ws4 output HDMI-1
+# workspace $ws1 output DP-1-2
+# workspace $ws2 output DP-1-2
+# workspace $ws3 output DP-1-2
+# workspace $ws4 output DP-1-2
 # workspace $ws5 output eDP-1
-# workspace $ws6 output HDMI-1
+# workspace $ws6 output DP-1-2
 # workspace $ws7 output eDP-1
 # workspace $ws8 output eDP-1
 # workspace $ws9 output eDP-1
 # workspace $ws10 output eDP-1
-# workspace $ws11 output HDMI-1
-# workspace $ws12 output HDMI-1
+# workspace $ws11 output DP-1-2
+# workspace $ws12 output DP-1-2
 # workspace $ws13 output eDP-1
 # workspace $ws14 output eDP-1
-# workspace $ws15 output HDMI-1
+# workspace $ws15 output DP-1-2
 
 # bind program to workspace and focus to them on startup:
 # assign [class="Xfce4-terminal"] $ws1
@@ -683,13 +683,13 @@ bar {
 # it could be that you have no primary display set: set one (xrandr --output <output> --primary)
 # reference: https://i3wm.org/docs/userguide.html#_tray_output
 		    tray_output primary
-        # tray_output HDMI-1
+        # tray_output DP-1-2
         # tray_output eDP-1
 		    tray_padding 0
-    output DP-1
-    output HDMI-1
+    output DP-1-1
+    output DP-1-2
     output eDP-1
-    output DP-3
+    output DP-1-3
 
 # When strip_workspace_numbers is set to yes,
 # any workspace that has a name of the form
