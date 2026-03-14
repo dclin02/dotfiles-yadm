@@ -20,7 +20,7 @@ if status is-interactive
   alias tf='terraform'
   alias kb "/home/berin/keyboard-configure.sh"
   # direnv hook fish | source
-  set -gx EDITOR lvim
+  set -gx EDITOR nvim
   set -gx BROWSER /usr/bin/firefox
 
   # fish_add_path (go env GOPATH)/bin
