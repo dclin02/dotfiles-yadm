@@ -132,9 +132,8 @@
             "format": " {}"
         },
         "mpris": {
-          "dynamic-len": 15,
-          "format": "{player_icon} {dynamic}",
-          "format-paused": "{status_icon} <i>{dynamic}</i>",
+          "format": "{player_icon} ",
+          "format-paused": "{status_icon} ",
           "player-icons": {
             "default": "▶",
             "mpv": "🎵"
