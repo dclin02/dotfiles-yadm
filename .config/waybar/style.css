@@ -1,0 +1,113 @@
+/* Matches swaybar look:
+   background:          #383c4a
+   focused workspace:   bg=#b0b5bd  text=#383c4a  border=#8b8b8b
+   active workspace:    bg=#8b8b8b  text=#383c4a  border=#5294e2
+   inactive workspace:  bg=#383c4a  text=#b0b5bd
+   urgent workspace:    bg=#e53935  text=#ffffff
+   separator:           #e345ff
+*/
+
+* {
+    font-family: "MonaspiceNe Nerd Font";
+    font-size: 12px;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background-color: #383c4a;
+    color: #ffffff;
+}
+
+/* ── Workspaces ───────────────────────────────────────────── */
+
+#workspaces {
+    background-color: #383c4a;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: #383c4a;
+    color: #b0b5bd;
+}
+
+#workspaces button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    text-shadow: none;
+}
+
+#workspaces button.focused {
+    background-color: #b0b5bd;
+    color: #383c4a;
+    border-bottom: 2px solid #8b8b8b;
+}
+
+#workspaces button.visible {
+    background-color: #8b8b8b;
+    color: #383c4a;
+    border-bottom: 2px solid #5294e2;
+}
+
+#workspaces button.urgent {
+    background-color: #e53935;
+    color: #ffffff;
+}
+
+/* ── Mode indicator ───────────────────────────────────────── */
+
+#mode {
+    color: #ffffff;
+    padding: 0 6px;
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ── Right-side modules ───────────────────────────────────── */
+
+#custom-mediaplayer,
+#disk,
+#memory,
+#cpu,
+#temperature,
+#network,
+#battery,
+#wireplumber,
+#custom-ppd,
+#clock,
+#custom-shutdown,
+#tray {
+    color: #ffffff;
+    padding: 0 8px;
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+#custom-ppd {
+    color: #407437;
+}
+
+/* Battery states */
+#battery.warning {
+    color: #e1b700;
+}
+
+#battery.critical {
+    color: #e53935;
+}
+
+/* Temperature critical */
+#temperature.critical {
+    color: #e53935;
+}
+
+/* Tray icon states */
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #e53935;
+}
