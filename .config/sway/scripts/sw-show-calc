@@ -1,0 +1,12 @@
+#!/bin/bash
+# Sway version of i3-show-calc: toggles SpeedCrunch via scratchpad.
+# SpeedCrunch is a Qt app; on Wayland its app_id is typically "speedcrunch".
+# Falls back to title match if needed.
+
+num=$(ps aux | rg '[^rg]\sspeedcrunch' | wc -l)
+if [ "$num" -gt 0 ]; then
+    swaymsg '[app_id="org.speedcrunch.speedcrunch"] scratchpad show' 2>/dev/null || \
+    swaymsg '[title="SpeedCrunch"] scratchpad show'
+else
+    speedcrunch &
+fi

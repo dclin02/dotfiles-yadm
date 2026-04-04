@@ -1,0 +1,542 @@
+# Sway config - ported from i3 config
+# Source i3 config: ~/.config/i3/config
+#
+# Key differences from i3:
+# - No compositor needed (sway is a Wayland compositor)
+# - Output names differ: check with `swaymsg -t get_outputs`
+# - Input config replaces setxkbmap/xcape/numlockx/xset
+# - feh -> swaybg, scrot -> grim/slurp, i3lock -> swaylock
+# - xidlehook + xset dpms -> swayidle
+# - unclutter -> seat hide_cursor
+# - xkill -> swaymsg kill (kills focused window, not click-to-kill)
+# - Mouse mode (xdotool) does not work in Wayland - see commented section
+# - xcape (CapsLock tap=Escape) needs keyd in Wayland (not provided here)
+# - rofi needs the Wayland fork: rofi-wayland (lbonn's fork)
+# - xfce4-clipman may work via XWayland; cliphist is a native alternative
+
+#######################
+# config starts here: #
+#######################
+
+font pango: MonaspiceNe Nerd Font Regular 10
+
+set $mod Mod4
+set $mod2 Mod1
+
+#####################
+# workspace layout: #
+#####################
+
+workspace_layout default
+
+##############################
+# extra options for windows: #
+##############################
+
+# border indicator on windows:
+# NOTE: i3 used `new_window pixel 1`, sway uses `default_border`
+default_border pixel 1
+
+smart_borders on
+gaps inner 6
+gaps outer 3
+
+# Use Mouse+$mod to drag floating windows
+# NOTE: added `normal` to also allow dragging tiled windows by title
+floating_modifier $mod normal
+
+# switch/iterate between workspaces
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
+workspace_auto_back_and_forth yes
+bindsym $mod+b workspace back_and_forth
+bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+
+# switch to workspace
+bindsym $mod+dead_grave workspace $ws0
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+bindsym $mod+minus workspace $ws11
+bindsym $mod+plus workspace $ws12
+bindsym $mod+bracketleft workspace $ws13
+bindsym $mod+bracketright workspace $ws14
+bindsym $mod+semicolon workspace $ws15
+bindsym $mod+dead_acute workspace $ws16
+
+# Move focused container to workspace
+bindsym $mod+Ctrl+dead_grave move container to workspace $ws0
+bindsym $mod+Ctrl+1 move container to workspace $ws1
+bindsym $mod+Ctrl+2 move container to workspace $ws2
+bindsym $mod+Ctrl+3 move container to workspace $ws3
+bindsym $mod+Ctrl+4 move container to workspace $ws4
+bindsym $mod+Ctrl+5 move container to workspace $ws5
+bindsym $mod+Ctrl+6 move container to workspace $ws6
+bindsym $mod+Ctrl+7 move container to workspace $ws7
+bindsym $mod+Ctrl+8 move container to workspace $ws8
+bindsym $mod+Ctrl+9 move container to workspace $ws9
+bindsym $mod+Ctrl+0 move container to workspace $ws10
+bindsym $mod+Ctrl+minus move container to workspace $ws11
+bindsym $mod+Ctrl+plus move container to workspace $ws12
+bindsym $mod+Ctrl+bracketleft move container to workspace $ws13
+bindsym $mod+Ctrl+bracketright move container to workspace $ws14
+bindsym $mod+Ctrl+semicolon move container to workspace $ws15
+bindsym $mod+Ctrl+dead_acute move container to workspace $ws16
+
+# Move to workspace with focused container
+bindsym $mod+Shift+dead_grave move container to workspace $ws0; workspace $ws0
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
+bindsym $mod+Shift+minus move container to workspace $ws11; workspace $ws11
+bindsym $mod+Shift+plus move container to workspace $ws12; workspace $ws12
+bindsym $mod+Shift+bracketleft move container to workspace $ws13; workspace $ws13
+bindsym $mod+Shift+bracketright move container to workspace $ws14; workspace $ws14
+bindsym $mod+Shift+semicolon move container to workspace $ws15; workspace $ws15
+bindsym $mod+Shift+dead_acute move container to workspace $ws16; workspace $ws16
+
+# Resize window
+bindsym $mod+Ctrl+r mode "resize"
+mode "resize" {
+        bindsym h resize shrink width 5 px or 5 ppt
+        bindsym j resize grow height 5 px or 5 ppt
+        bindsym k resize shrink height 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt
+
+        bindsym shift+h resize shrink width 1 px or 1 ppt
+        bindsym shift+j resize grow height 1 px or 1 ppt
+        bindsym shift+k resize shrink height 1 px or 1 ppt
+        bindsym shift+l resize grow width 1 px or 1 ppt
+
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+######################################
+# keybindings for different actions: #
+######################################
+
+# start a terminal
+bindsym $mod+Return exec alacritty
+
+bindsym $mod+Shift+t exec python ~/.config/sway/scripts/swdrop-fs.py
+bindsym $mod+t workspace $ws2
+bindsym $mod+d exec python ~/.config/sway/scripts/swdrop.py
+bindsym $mod+c exec ~/.config/sway/scripts/sw-show-calc
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# exit-menu
+bindsym $mod+Shift+e exec --no-startup-id ~/.config/sway/scripts/powermenu
+set $mode_system (l)ock, (e)xit, (s)uspend, (r)eboot, (Shift+s)hutdown
+bindsym $mod+F12 mode "$mode_system"
+mode "$mode_system" {
+    bindsym l exec ~/.config/sway/scripts/blur-lock, mode "default"
+    bindsym s exec systemctl suspend, mode "default"
+    bindsym e exec swaymsg exit, mode "default"
+    bindsym r exec systemctl reboot, mode "default"
+    bindsym Shift+s exec systemctl poweroff, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Lock the system
+bindsym $mod+F11 exec ~/.config/sway/scripts/blur-lock
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart/reload sway (sway has no in-place restart like i3; reload reloads config)
+bindsym $mod+Shift+r reload
+
+# keybinding hint
+bindsym $mod+F1 exec --no-startup-id ~/.config/sway/scripts/keyhint
+
+# Backlight control (uses brightnessctl via updated volume_brightness.sh)
+bindsym XF86MonBrightnessUp exec ~/.config/sway/scripts/volume_brightness.sh brightness_up
+bindsym XF86MonBrightnessDown exec ~/.config/sway/scripts/volume_brightness.sh brightness_down
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split orientation
+bindsym $mod+q split h
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+f floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+Shift+space focus mode_toggle
+
+# toggle sticky
+bindsym $mod+Shift+s sticky toggle
+
+# focus the parent/child container
+bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus child
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+BackSpace move scratchpad
+
+# Show/cycle scratchpad windows
+bindsym $mod+BackSpace scratchpad show
+
+# Multimedia Keys
+
+# volume (using sway's version of volume_brightness.sh)
+bindsym XF86AudioRaiseVolume exec ~/.config/sway/scripts/volume_brightness.sh volume_up
+bindsym XF86AudioLowerVolume exec ~/.config/sway/scripts/volume_brightness.sh volume_down
+
+# gradual volume control
+bindsym $mod+XF86AudioRaiseVolume exec amixer -D pulse sset Master 1%+ && pkill -RTMIN+1 i3blocks
+bindsym $mod+XF86AudioLowerVolume exec amixer -D pulse sset Master 1%- && pkill -RTMIN+1 i3blocks
+
+# mute
+bindsym XF86AudioMute exec ~/.config/sway/scripts/volume_brightness.sh volume_mute
+
+# mic mute toggle
+bindsym XF86AudioMicMute exec amixer sset Capture toggle
+
+# audio control
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+## App shortcuts
+bindsym $mod+F2 exec /usr/bin/firefox
+bindsym $mod+F3 exec /usr/bin/thunar
+bindsym $mod+F4 exec /snap/bin/dbeaver-ce
+bindsym $mod+F5 exec /snap/bin/postman
+
+# Screenshots (scrot replaced with grim/slurp)
+# Full screen screenshot
+bindsym Print exec grim ~/Pictures/$(date '+%Y-%m-%d-%T')-screenshot.png && notify-send "Screenshot saved to ~/Pictures/$(date '+%Y-%m-%d-%T')-screenshot.png"
+# Active window screenshot
+bindsym $mod+Print exec sh -c 'grim -g "$(swaymsg -t get_tree | jq -r '"'"'.. | select(.focused? == true) | .rect | "\(.x),\(.y) \(.width)x\(.height)"'"'"')" ~/Pictures/$(date +%Y-%m-%d-%T)-screenshot.png && notify-send "Screenshot saved"'
+# Area selection screenshot
+bindsym $mod+Shift+Print exec grim -g "$(slurp)" ~/Pictures/$(date '+%Y-%m-%d-%T')-screenshot.png && notify-send "Screenshot saved to ~/Pictures/$(date '+%Y-%m-%d-%T')-screenshot.png"
+
+# Kill focused window (replaces xkill; kills focused, not click-to-kill)
+bindsym $mod+Ctrl+x exec swaymsg kill
+
+bindsym $mod+Ctrl+m exec pavucontrol
+
+# Power Profiles menu switcher (rofi)
+bindsym $mod+Shift+p exec ~/.config/sway/scripts/power-profiles
+
+##########################################
+# configuration for workspace behaviour: #
+##########################################
+
+set $ws0 0:
+set $ws1 1:
+set $ws2 2:
+set $ws3 3
+set $ws4 4
+set $ws5 5:
+set $ws6 6:
+set $ws7 7:
+set $ws8 8
+set $ws9 9:
+set $ws10 10:󰎛
+set $ws11 11:
+set $ws12 12
+set $ws13 13
+set $ws14 14:󰝚
+set $ws15 15
+set $ws16 16
+
+# Output configuration (replaces ~/.screenlayout/monitor.sh)
+# eDP-1 confirmed. Dock outputs (DP-1-1/DP-1-2/DP-1-3 in X11) need Wayland names verified:
+# plug in the dock, run `swaymsg -t get_outputs | grep name`, then uncomment and fill in below.
+
+output eDP-1 {
+    mode 1920x1200@60Hz
+    pos 1595 1480
+    scale 1.25
+    transform normal
+}
+
+# DP-5: AOC 24G2W1G4 — left portrait monitor
+output DP-5 {
+    mode 1920x1080@120Hz
+    pos 0 0
+    transform 270
+}
+
+# DP-6: LG UltraGear+ — center primary monitor
+output DP-6 {
+    mode 2560x1440@120Hz
+    pos 1080 40
+    transform normal
+}
+
+# DP-7: AOC 24G2W1G5 — right portrait monitor
+output DP-7 {
+    mode 1920x1080@75Hz
+    pos 3640 0
+    transform 90
+}
+
+# Workspace-to-output assignments
+workspace $ws0 output eDP-1
+workspace $ws1 output DP-6 eDP-1
+workspace $ws2 output DP-6 eDP-1
+workspace $ws3 output DP-6 eDP-1
+workspace $ws4 output DP-6 eDP-1
+workspace $ws5 output DP-5 eDP-1
+workspace $ws6 output DP-5 eDP-1
+workspace $ws7 output DP-5 eDP-1
+workspace $ws8 output DP-5 eDP-1
+workspace $ws9 output DP-7 eDP-1
+workspace $ws10 output DP-7 eDP-1
+workspace $ws11 output DP-7 eDP-1
+workspace $ws12 output DP-6 eDP-1
+workspace $ws13 output eDP-1
+workspace $ws14 output eDP-1
+workspace $ws15 output eDP-1
+
+###################
+# input / keyboard #
+###################
+
+# Keyboard configuration
+# CapsLock tap=Escape / hold=Ctrl handled by interception-tools + caps2esc
+
+# Default for all keyboards
+input "type:keyboard" {
+    xkb_layout us
+    repeat_delay 200
+    repeat_rate 45
+    xkb_numlock enabled
+}
+
+# External keyboards (e.g. Keychron): US International with dead keys
+input "13364:53297:Keychron__Keychron_Link__Keyboard" {
+    xkb_layout us
+    xkb_variant intl
+    repeat_delay 200
+    repeat_rate 45
+}
+
+# Laptop built-in keyboard: Brazilian Portuguese, ThinkPad variant
+input "1:1:AT_Translated_Set_2_keyboard" {
+    xkb_layout br
+    xkb_variant thinkpad
+    repeat_delay 200
+    repeat_rate 45
+}
+
+# Toggle laptop keyboard layout: BR ThinkPad <-> US
+bindsym $mod+F7 exec swaymsg 'input "1:1:AT_Translated_Set_2_keyboard" xkb_variant ""' && swaymsg 'input "1:1:AT_Translated_Set_2_keyboard" xkb_layout br' && swaymsg 'input "1:1:AT_Translated_Set_2_keyboard" xkb_variant thinkpad'
+bindsym $mod+F8 exec swaymsg 'input "1:1:AT_Translated_Set_2_keyboard" xkb_variant ""' && swaymsg 'input "1:1:AT_Translated_Set_2_keyboard" xkb_layout us' && swaymsg 'input "1:1:AT_Translated_Set_2_keyboard" xkb_variant intl'
+
+#############################################
+# autostart applications/services on login: #
+#############################################
+
+# Pass Wayland env vars to systemd user session and D-Bus so that
+# services activated via D-Bus (xdg-desktop-portal, waybar, etc.) have
+# access to the display. Must run before anything that needs the portal.
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK
+
+# polkit auth agent
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# dex autostart (environment changed from i3 to sway)
+exec dex --autostart --environment sway
+
+# KDE Connect
+exec /usr/lib/kdeconnectd
+exec kdeconnect-indicator
+
+# Wallpaper (feh replaced with swaybg)
+exec swaybg -i /home/daniel.lin/Pictures/JWST/6.jpg -m fill
+
+# Desktop notifications (dunst works in Wayland)
+exec /usr/bin/dunst
+bindsym $mod+Shift+n exec dunstctl set-paused toggle
+bindsym $mod+n exec dunstctl close-all
+bindsym $mod+Ctrl+h exec dunstctl history-pop
+
+# Idle / lock / DPMS (replaces xidlehook + xset)
+# Locks at 480s, turns off displays at 600s
+exec swayidle -w \
+    timeout 480 '~/.config/sway/scripts/blur-lock' \
+    timeout 600 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep '~/.config/sway/scripts/blur-lock'
+
+# Hide cursor after inactivity (replaces unclutter)
+seat * hide_cursor 5000
+
+# Clipboard manager
+# xfce4-clipman may work via XWayland; wl-paste+cliphist is a native alternative:
+# exec wl-paste --type text --watch cliphist store
+# exec wl-paste --type image --watch cliphist store
+exec xfce4-clipman
+
+# Output layout is configured inline above via output {} blocks
+
+##################
+# floating rules #
+##################
+
+# NOTE: for native Wayland apps use `app_id`; for XWayland apps `class` still works.
+
+for_window [class="Yad" instance="yad"] floating enable
+for_window [class="Galculator" instance="galculator"] floating enable
+for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+for_window [class="Xsane" instance="xsane"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [app_id="pavucontrol"] floating enable
+for_window [class="qt5ct" instance="qt5ct"] floating enable
+for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
+for_window [class="Pamac-manager"] floating enable
+for_window [window_role="About"] floating enable
+for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [class="GParted"] floating enable border normal
+for_window [title="File Transfer*"] floating enable
+for_window [class="Clipgrab"] floating enable
+for_window [instance="speedcrunch"] floating enable, move scratchpad
+for_window [app_id="org.speedcrunch.speedcrunch"] floating enable, move scratchpad
+for_window [class="Blueman-manager"] floating enable
+for_window [app_id="blueman-manager"] floating enable
+for_window [class="cursor_ranger"] floating enable
+for_window [title="Ente Auth"] floating enable
+
+for_window [class="urxvt"] border pixel 1
+
+######################################
+# color settings for bar and windows #
+######################################
+
+set $darkbluetrans	#08052be6
+set $darkblue		#08052b
+set $lightblue		#5294e2
+set $urgentred		#e53935
+set $white		#ffffff
+set $black		#000000
+set $purple		#e345ff
+set $darkgrey		#383c4a
+set $grey		#b0b5bd
+set $mediumgrey		#8b8b8b
+set $yellowbrown	#e1b700
+
+client.focused              #5e81ac #3b4252 #ffffff #484e50   #5f676a
+client.focused_inactive     #3b4252 #3b4252 #ffffff #484e50   #5f676a
+
+############################################
+# bar: waybar (replaces swaybar)           #
+# config: ~/.config/waybar/                #
+############################################
+
+exec waybar
+
+#####################################
+# Application menu handled by rofi: #
+#####################################
+
+# NOTE: rofi needs the Wayland fork (lbonn's rofi-wayland) for native Wayland support.
+# Install: yay -S rofi-wayland
+
+bindsym $mod+space exec rofi -modi drun -show drun \
+        -config ~/.config/rofi/rofidmenu.rasi \
+        -monitor $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')
+
+bindsym $mod+Tab exec rofi -show window -config ~/.config/rofi/rofidmenu.rasi \
+        -monitor $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')
+bindsym $mod+Shift+Tab exec rofi -show windowcd -config ~/.config/rofi/rofidmenu.rasi \
+        -monitor $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')
+
+# Gaps mode
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# Mouse mode
+# NOTE: xdotool does not work in Wayland. This mode is disabled.
+# For keyboard-driven mouse in Wayland, consider ydotool or wlrctl.
+# bindsym $mod+$mod2+Shift+m mode "mouse"
