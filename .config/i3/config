@@ -606,6 +606,7 @@ for_window [class="Clipgrab"] floating enable
 for_window [instance="speedcrunch"] floating enable, move scratchpad
 for_window [class="Blueman-manager"] floating enable
 for_window [class="cursor_ranger"] floating enable
+for_window [title="Ente Auth"] floating enable
 
 # set border of floating window
 for_window [class="urxvt"] border pixel 1
