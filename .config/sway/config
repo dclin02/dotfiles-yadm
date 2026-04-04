@@ -27,7 +27,8 @@ set $mod2 Mod1
 # workspace layout: #
 #####################
 
-workspace_layout default
+workspace_layout tabbed
+hide_edge_borders --i3 both
 
 ##############################
 # extra options for windows: #
