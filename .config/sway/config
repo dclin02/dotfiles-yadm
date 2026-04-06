@@ -420,12 +420,14 @@ exec swayidle -w \
 
 # Hide cursor after inactivity (replaces unclutter)
 seat * hide_cursor 5000
+seat * xcursor_theme Yaru
 
 # Clipboard manager
 # xfce4-clipman may work via XWayland; wl-paste+cliphist is a native alternative:
 # exec wl-paste --type text --watch cliphist store
 # exec wl-paste --type image --watch cliphist store
 exec xfce4-clipman
+exec copyq --start-server
 
 # Output layout is configured inline above via output {} blocks
 
