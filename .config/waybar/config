@@ -2,7 +2,7 @@
     {
         "layer": "top",
         "position": "bottom",
-        "output": ["DP-6", "eDP-1"],
+        "output": ["LG Electronics LG ULTRAGEAR+ 403AZVNEG743", "eDP-1"],
         "height": 24,
         "spacing": 0,
         "modules-left": ["sway/workspaces", "sway/mode"],
@@ -32,7 +32,7 @@
         "mpris": {
           "format": "{player_icon} {dynamic}",
           "format-paused": "{status_icon} <i>{dynamic}</i>",
-          "dynamic-len": 70,
+          "dynamic-len": 40,
           "title-len": 40,
           "player-icons": {
             "default": "▶",
@@ -104,7 +104,7 @@
     {
         "layer": "top",
         "position": "bottom",
-        "output": ["DP-5", "DP-7" ],
+        "output": ["AOC 24G2W1G4 0x000016F2", "AOC 24G2W1G5 0x00000402" ],
         "height": 24,
         "spacing": 0,
         "modules-left": ["sway/workspaces", "sway/mode"],

@@ -309,40 +309,46 @@ output eDP-1 {
 }
 
 # DP-5: AOC 24G2W1G4 — left portrait monitor
-output DP-5 {
+output "AOC 24G2W1G4 0x000016F2" {
     mode 1920x1080@120Hz
     pos 0 0
     transform 270
 }
 
 # DP-6: LG UltraGear+ — center primary monitor
-output DP-6 {
+output "LG Electronics LG ULTRAGEAR+ 403AZVNEG743" {
     mode 2560x1440@120Hz
     pos 1080 40
     transform normal
 }
 
 # DP-7: AOC 24G2W1G5 — right portrait monitor
-output DP-7 {
+# output DP-7 {
+#     mode 1920x1080@75Hz
+#     pos 3640 0
+#     transform 90
+# }
+output "AOC 24G2W1G5 0x00000402" {
     mode 1920x1080@75Hz
     pos 3640 0
     transform 90
 }
 
+
 # Workspace-to-output assignments
 workspace $ws0 output eDP-1
-workspace $ws1 output DP-6 eDP-1
-workspace $ws2 output DP-6 eDP-1
-workspace $ws3 output DP-6 eDP-1
-workspace $ws4 output DP-6 eDP-1
-workspace $ws5 output DP-5 eDP-1
-workspace $ws6 output DP-5 eDP-1
-workspace $ws7 output DP-5 eDP-1
-workspace $ws8 output DP-5 eDP-1
-workspace $ws9 output DP-7 eDP-1
-workspace $ws10 output DP-7 eDP-1
-workspace $ws11 output DP-7 eDP-1
-workspace $ws12 output DP-7 eDP-1
+workspace $ws1 output "LG Electronics LG ULTRAGEAR+ 403AZVNEG743" eDP-1
+workspace $ws2 output "LG Electronics LG ULTRAGEAR+ 403AZVNEG743" eDP-1
+workspace $ws3 output "LG Electronics LG ULTRAGEAR+ 403AZVNEG743" eDP-1
+workspace $ws4 output "LG Electronics LG ULTRAGEAR+ 403AZVNEG743" eDP-1
+workspace $ws5 output "AOC 24G2W1G4 0x000016F2" eDP-1
+workspace $ws6 output "AOC 24G2W1G4 0x000016F2" eDP-1
+workspace $ws7 output "AOC 24G2W1G4 0x000016F2" eDP-1
+workspace $ws8 output "AOC 24G2W1G4 0x000016F2" eDP-1
+workspace $ws9 output "AOC 24G2W1G5 0x00000402" eDP-1
+workspace $ws10 output "AOC 24G2W1G5 0x00000402" eDP-1
+workspace $ws11 output "AOC 24G2W1G5 0x00000402" eDP-1
+workspace $ws12 output "AOC 24G2W1G5 0x00000402" eDP-1
 workspace $ws13 output eDP-1
 workspace $ws14 output eDP-1
 workspace $ws15 output eDP-1
@@ -460,6 +466,10 @@ for_window [title="Ente Auth"] floating enable
 
 for_window [class="urxvt"] border pixel 1
 
+# Inhibit idle when any window is fullscreen (prevents lock during video)
+for_window [app_id=".*"] inhibit_idle fullscreen
+for_window [class=".*"] inhibit_idle fullscreen
+
 ######################################
 # color settings for bar and windows #
 ######################################
@@ -497,8 +507,9 @@ bindsym $mod+space exec rofi -modi drun -show drun \
         -config ~/.config/rofi/rofidmenu.rasi \
         -monitor $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')
 
-bindsym $mod+Tab exec rofi -show window -config ~/.config/rofi/rofidmenu.rasi \
-        -monitor $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')
+# bindsym $mod+Tab exec rofi -show window -config ~/.config/rofi/rofidmenu.rasi \
+#         -monitor $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')
+bindsym $mod+Tab exec /home/daniel.lin/.config/sway/scripts/window-menu
 bindsym $mod+Shift+Tab exec rofi -show windowcd -config ~/.config/rofi/rofidmenu.rasi \
         -monitor $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')
 
