@@ -5,9 +5,9 @@
 [global]
     ### Display ###
     monitor = 1
-    # follow = none
+    follow = none
 
-    follow = keyboard
+    # follow = keyboard
 
     ### Geometry ###
     width = 300
