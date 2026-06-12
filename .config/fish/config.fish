@@ -21,10 +21,11 @@ if status is-interactive
     # alias tf='terraform'
     alias kb "/home/daniel.lin/keyboard-configure.sh"
     alias daily "/home/daniel.lin/daily"
+    alias daily2 "go run /home/daniel.lin/repos/teste/daily/main.go"
     alias obsidian "/home/daniel.lin/Applications/Obsidian/Obsidian-1.8.10.AppImage"
     # alias gt "gotestsum --format-hide-empty-pkg --format testdox"
     alias gt "gotestsum --format-hide-empty-pkg"
-    alias gcst "gcloud sql generate-login-token | xclip"
+    alias gcst "gcloud sql generate-login-token | copyq 'add(input()); select(0)'"
     alias avim "NVIM_APPNAME=astronvim nvim"
     alias lvim nvim
     alias vim "nvim --clean"
