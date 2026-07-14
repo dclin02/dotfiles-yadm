@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Work
+GenericName=Morning Apps Launcher
+Comment=Start Obsidian, Slack and Spotify if not already running
+TryExec=/home/daniel.lin/.config/sway/scripts/work
+Exec=/home/daniel.lin/.config/sway/scripts/work
+Terminal=false
+Type=Application
+Keywords=work;morning;startup;obsidian;slack;spotify;
+Icon=applications-office
+Categories=Utility;
+StartupNotify=false

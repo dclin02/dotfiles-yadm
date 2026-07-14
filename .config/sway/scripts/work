@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# work — start the morning apps, skipping any that are already running.
+# Each app is launched detached so closing this terminal won't kill it.
+
+set -u
+
+# When launched from rofi / a .desktop entry, the environment does NOT source
+# the shell profile, so PATH is missing dirs like ~/.local/bin (obsidian) and
+# /snap/bin (spotify). Prepend them so the commands below always resolve.
+export PATH="$HOME/.local/bin:/snap/bin:$PATH"
+
+# name | launch command
+apps=(
+  "Obsidian|obsidian"
+  "Slack|slack"
+  "Spotify|spotify"
+)
+
+launch() {
+  local name="$1" cmd="$2"
+  # match the running process by its binary name (case-insensitive, whole word)
+  if pgrep -xi "$cmd" >/dev/null 2>&1; then
+    echo "✓ $name already running"
+    return
+  fi
+  echo "▶ starting $name"
+  setsid "$cmd" >/dev/null 2>&1 < /dev/null &
+  disown 2>/dev/null || true
+}
+
+for entry in "${apps[@]}"; do
+  launch "${entry%%|*}" "${entry##*|}"
+done
