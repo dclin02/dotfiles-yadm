@@ -384,6 +384,13 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     repeat_rate 45
 }
 
+input "type:touchpad" {
+    tap enabled
+    # natural_scroll enabled
+    dwt enabled
+}
+
+
 # Toggle laptop keyboard layout: BR ThinkPad <-> US
 bindsym $mod+F7 exec swaymsg 'input "1:1:AT_Translated_Set_2_keyboard" xkb_variant ""' && swaymsg 'input "1:1:AT_Translated_Set_2_keyboard" xkb_layout br' && swaymsg 'input "1:1:AT_Translated_Set_2_keyboard" xkb_variant thinkpad'
 bindsym $mod+F8 exec swaymsg 'input "1:1:AT_Translated_Set_2_keyboard" xkb_variant ""' && swaymsg 'input "1:1:AT_Translated_Set_2_keyboard" xkb_layout us' && swaymsg 'input "1:1:AT_Translated_Set_2_keyboard" xkb_variant intl'
@@ -469,6 +476,7 @@ for_window [class="urxvt"] border pixel 1
 # Inhibit idle when any window is fullscreen (prevents lock during video)
 for_window [app_id=".*"] inhibit_idle fullscreen
 for_window [class=".*"] inhibit_idle fullscreen
+exec sway-audio-idle-inhibit
 
 ######################################
 # color settings for bar and windows #
