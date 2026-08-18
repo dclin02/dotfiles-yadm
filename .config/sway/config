@@ -337,12 +337,12 @@ output "AOC 24G2W1G5 0x00000402" {
 
 # Workspace-to-output assignments
 workspace $ws0 output eDP-1
-workspace $ws1 output "LG Electronics LG ULTRAGEAR+ 403AZVNEG743" eDP-1
-workspace $ws2 output "LG Electronics LG ULTRAGEAR+ 403AZVNEG743" eDP-1
-workspace $ws3 output "LG Electronics LG ULTRAGEAR+ 403AZVNEG743" eDP-1
+workspace $ws1 output "LG Electronics LG ULTRAGEAR+ 403AZVNEG743" HDMI-A-1 eDP-1
+workspace $ws2 output "LG Electronics LG ULTRAGEAR+ 403AZVNEG743" HDMI-A-1 eDP-1
+workspace $ws3 output "LG Electronics LG ULTRAGEAR+ 403AZVNEG743" HDMI-A-1 eDP-1
 workspace $ws4 output "LG Electronics LG ULTRAGEAR+ 403AZVNEG743" eDP-1
 workspace $ws5 output "AOC 24G2W1G4 0x000016F2" eDP-1
-workspace $ws6 output "AOC 24G2W1G4 0x000016F2" eDP-1
+workspace $ws6 output "AOC 24G2W1G4 0x000016F2" eDP-1 HDMI-A-1
 workspace $ws7 output "AOC 24G2W1G4 0x000016F2" eDP-1
 workspace $ws8 output "AOC 24G2W1G4 0x000016F2" eDP-1
 workspace $ws9 output "AOC 24G2W1G5 0x00000402" eDP-1
@@ -513,6 +513,7 @@ exec waybar
 
 bindsym $mod+space exec rofi -modi drun -show drun \
         -config ~/.config/rofi/rofidmenu.rasi \
+        -sort -sorting-method levenshtein \
         -monitor $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')
 
 # bindsym $mod+Tab exec rofi -show window -config ~/.config/rofi/rofidmenu.rasi \

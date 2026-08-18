@@ -2,13 +2,14 @@
     {
         "layer": "top",
         "position": "bottom",
-        "output": ["LG Electronics LG ULTRAGEAR+ 403AZVNEG743", "eDP-1"],
+        "output": ["LG Electronics LG ULTRAGEAR+ 403AZVNEG743", "eDP-1", "HDMI-A-1"],
         "height": 24,
         "spacing": 0,
         "modules-left": ["sway/workspaces", "sway/mode"],
         "modules-center": [],
         "modules-right": [
             "mpris",
+            "custom/audio_idle_inhibitor",
             "disk",
             "memory",
             "cpu",
@@ -41,6 +42,18 @@
           "status-icons": {
             "paused": "⏸"
           },
+        },
+        "custom/audio_idle_inhibitor": {
+            "format": "{icon}",
+            "exec": "sway-audio-idle-inhibit --dry-print-both-waybar",
+            "exec-if": "which sway-audio-idle-inhibit",
+            "return-type": "json",
+            "format-icons": {
+              "output": "",
+              "input": "",
+              "output-input": "  ",
+              "none": ""
+            }
         },
 
         "disk": {
