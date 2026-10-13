@@ -74,6 +74,7 @@ window#waybar {
 #temperature,
 #network,
 #battery,
+#custom-mouse-battery,
 #wireplumber,
 #custom-ppd,
 #clock,
@@ -94,6 +95,14 @@ window#waybar {
 }
 
 #battery.critical {
+    color: #e53935;
+}
+
+#custom-mouse-battery.warning {
+    color: #e1b700;
+}
+
+#custom-mouse-battery.critical {
     color: #e53935;
 }
 

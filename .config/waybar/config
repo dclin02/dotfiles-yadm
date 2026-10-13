@@ -16,6 +16,7 @@
             "temperature",
             "network",
             "battery",
+            "custom/mouse-battery",
             "wireplumber",
             "custom/ppd",
             "clock",
@@ -80,6 +81,12 @@
             "format-disconnected": "⚠ disconnected",
             "interval": 2
         },
+        "custom/mouse-battery": {
+            "format": "󰍽 {}",
+            "exec": "~/.config/waybar/scripts/mouse-battery.sh",
+            "return-type": "json",
+            "interval": 60
+        },
         "battery": {
             "format": " {capacity}%",
             "format-charging": " {capacity}%",
@@ -124,12 +131,11 @@
         "modules-center": [],
         "modules-right": [
             "mpris",
-            "disk",
             "memory",
             "cpu",
             "temperature",
-            "network",
             "battery",
+            "custom/mouse-battery",
             "wireplumber",
             "custom/ppd",
             "clock",
@@ -156,13 +162,8 @@
           },
         },
 
-        "disk": {
-            "format": " {free}",
-            "path": "/",
-            "interval": 30
-        },
         "memory": {
-            "format": " {used}G/{total}G ({percentage}%)",
+            "format": " {used}G ({percentage}%)",
             "interval": 2
         },
         "cpu": {
@@ -174,11 +175,11 @@
             "critical-threshold": 90,
             "interval": 30
         },
-        "network": {
-            "format-ethernet": " {bandwidthUpBits}  {bandwidthDownBits}",
-            "format-wifi": " {bandwidthUpBits}  {bandwidthDownBits}",
-            "format-disconnected": "⚠ disconnected",
-            "interval": 2
+        "custom/mouse-battery": {
+            "format": "󰍽 {}",
+            "exec": "~/.config/waybar/scripts/mouse-battery.sh",
+            "return-type": "json",
+            "interval": 60
         },
         "battery": {
             "format": " {capacity}%",
