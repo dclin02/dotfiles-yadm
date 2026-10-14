@@ -476,7 +476,8 @@ for_window [class="urxvt"] border pixel 1
 # Inhibit idle when any window is fullscreen (prevents lock during video)
 for_window [app_id=".*"] inhibit_idle fullscreen
 for_window [class=".*"] inhibit_idle fullscreen
-exec sway-audio-idle-inhibit
+# Inhibit idle while any audio is playing/recording (calls, videos, music)
+exec ~/.config/sway/scripts/audio-idle-inhibit
 
 ######################################
 # color settings for bar and windows #

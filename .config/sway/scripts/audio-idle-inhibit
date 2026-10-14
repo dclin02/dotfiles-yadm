@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# Inhibits idle (lock + DPMS) while any audio stream is active: playback
+# (videos, music, call audio) or capture (mic in Meet/Zoom/etc).
+#
+# Uses sway's native `inhibit_idle`, which swayidle honors. Replaces
+# sway-audio-idle-inhibit, whose current version uses logind "idle"
+# inhibitors (ignored by swayidle) and aborts when D-Bus drops.
+
+exec 9>"${XDG_RUNTIME_DIR:-/tmp}/audio-idle-inhibit.lock"
+flock -n 9 || { echo "already running" >&2; exit 1; }
+
+state=""
+
+audio_active() {
+    # Streams that are open and not paused (corked)
+    local n
+    n=$( { pactl -f json list sink-inputs; pactl -f json list source-outputs; } 2>/dev/null \
+        | jq -s '[.[][] | select(.corked == false)] | length' 2>/dev/null)
+    [ "${n:-0}" -gt 0 ]
+}
+
+apply() {
+    local mode=$1 force=${2:-}
+    [ "$mode" = "$state" ] && [ -z "$force" ] && return
+    swaymsg -q "[app_id=\".*\"] inhibit_idle $mode" 2>/dev/null
+    swaymsg -q "[class=\".*\"] inhibit_idle $mode" 2>/dev/null
+    state=$mode
+    echo "inhibit_idle $mode"
+}
+
+update() {
+    if audio_active; then apply open; else apply fullscreen; fi
+}
+
+cleanup() {
+    state=""
+    apply fullscreen
+    pkill -P $$ 2>/dev/null
+}
+trap cleanup EXIT
+trap 'exit 0' INT TERM
+
+while true; do
+    update
+    # Re-check on every stream event
+    while true; do
+        if read -r -t 30 _; then
+            update
+        elif [ $? -gt 128 ]; then
+            # Timeout: re-apply so windows opened mid-call are covered too
+            [ "$state" = open ] && audio_active && apply open force
+        else
+            break  # pactl subscribe died (e.g. PipeWire restart)
+        fi
+    done < <(pactl subscribe 2>/dev/null | grep --line-buffered -E "sink-input|source-output")
+    sleep 2
+done
