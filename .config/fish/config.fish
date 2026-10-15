@@ -8,6 +8,7 @@ if status is-interactive
     alias cat="bat"
     alias ls="eza -a --color=always --group-directories-first --icons"
     alias lg="lazygit"
+    alias ylg='lazygit --git-dir="$HOME/.local/share/yadm/repo.git" --work-tree="$HOME"'
     # alias tray="/home/daniel.lin/tray"
     alias hdmir="tmux attach-session -t right || tmux new -s right"
     alias r="tmux attach-session -t right || tmux new -s right"
@@ -46,7 +47,6 @@ if status is-interactive
     if [ -f '/home/daniel.lin/google-cloud-sdk/path.fish.inc' ]
         . '/home/daniel.lin/google-cloud-sdk/path.fish.inc'
     end
-
 
     # ASDF configuration code
     # if test -z $ASDF_DATA_DIR
