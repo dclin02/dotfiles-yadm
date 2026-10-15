@@ -284,8 +284,9 @@ set $ws1 1:
 set $ws2 2:
 set $ws3 3
 set $ws4 4
-set $ws5 5:
-set $ws6 6:
+# set $ws5 5:
+set $ws5 5
+set $ws6 6:
 set $ws7 7:
 set $ws8 8
 set $ws9 9:
@@ -341,14 +342,16 @@ workspace $ws1 output "LG Electronics LG ULTRAGEAR+ 403AZVNEG743" HDMI-A-1 eDP-1
 workspace $ws2 output "LG Electronics LG ULTRAGEAR+ 403AZVNEG743" HDMI-A-1 eDP-1
 workspace $ws3 output "LG Electronics LG ULTRAGEAR+ 403AZVNEG743" HDMI-A-1 eDP-1
 workspace $ws4 output "LG Electronics LG ULTRAGEAR+ 403AZVNEG743" HDMI-A-1 eDP-1
-workspace $ws5 output "AOC 24G2W1G4 0x000016F2" eDP-1
+# workspace $ws5 output "AOC 24G2W1G4 0x000016F2" eDP-1
+workspace $ws5 output "LG Electronics LG ULTRAGEAR+ 403AZVNEG743" eDP-1
 workspace $ws6 output "AOC 24G2W1G4 0x000016F2" HDMI-A-1 eDP-1
 workspace $ws7 output "AOC 24G2W1G4 0x000016F2" eDP-1
 workspace $ws8 output "AOC 24G2W1G4 0x000016F2" eDP-1
 workspace $ws9 output "AOC 24G2W1G5 0x00000402" eDP-1
 workspace $ws10 output "AOC 24G2W1G5 0x00000402" eDP-1
 workspace $ws11 output "AOC 24G2W1G5 0x00000402" eDP-1
-workspace $ws12 output "AOC 24G2W1G5 0x00000402" eDP-1
+# workspace $ws12 output "AOC 24G2W1G5 0x00000402" eDP-1
+workspace $ws12 output "LG Electronics LG ULTRAGEAR+ 403AZVNEG743" eDP-1
 workspace $ws13 output eDP-1
 workspace $ws14 output eDP-1
 workspace $ws15 output eDP-1

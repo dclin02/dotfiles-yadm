@@ -1,0 +1,42 @@
+
+# Parse the Sway tree to generate a formatted list of windows for fuzzel.
+selected_window=$( swaymsg -t get_tree | jq -r '
+	..
+	# Get workspaces and customize workspace names
+	| objects | select(.type == "workspace") as $workspace
+	| ( if $workspace.name == "__i3_scratch" 
+		then "-" else $workspace.name end 
+	  ) as $ws_name 
+
+        | ..
+	# Get opened apps and set "focused" decoration
+        | objects | select(has("app_id"))
+	| (if .focused == true then "🟢" else "" end) as $selected
+
+	# Exclude apps from list
+	| select(.app_id == null or (.app_id | test("pavucontrol") | not))
+	
+	# Manually set icons to fix cases where they are not displayed
+	| ( "vivaldi-pjibgclleladliembfgfagdaldikeohf-Default" ) as $spotify
+	| ( if .name != null and (.name | test("Spotify")) then $spotify
+		elif .app_id == "Firefox" then "firefox" 
+		else .app_id // .window_properties.class // .name end
+	  ) as $icon
+	
+	# Fix for displaying app_id when it is null
+	| ( if .app_id == null and (.name | test("Spotify")) then "Spotify" 
+		else .name end 
+	  ) as $app_id
+
+	# Set dmenu item format (keep the icon separated from the rest)
+	# Output ex: 📂 (101) [1] 🟢File Explorer 
+	| "(\(.id)) [\($ws_name)] \($selected)\($app_id)" +
+	  "\u0000icon\u001f\($icon)"' \
+	| rofi -dmenu -show-icons -i -config ~/.config/rofi/rofidmenu.rasi
+)
+
+# Focus the selected window.
+if [ "$selected_window" != "" ]; then
+	window_id=$(echo "$selected_window" | sed 's/.*(\([[:digit:]]*\)).*/\1/')
+	swaymsg [con_id="$window_id"] focus
+fi
