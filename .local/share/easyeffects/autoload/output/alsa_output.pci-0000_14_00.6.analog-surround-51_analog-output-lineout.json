@@ -1,0 +1,6 @@
+{
+    "device": "alsa_output.pci-0000_14_00.6.analog-surround-51",
+    "device-description": "Family 17h/19h HD Audio Controller Analog Surround 5.1",
+    "device-profile": "analog-output-lineout",
+    "preset-name": "empty"
+}

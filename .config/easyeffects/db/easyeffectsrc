@@ -1,17 +1,17 @@
 [Presets]
-lastLoadedOutputPreset=recovered-24.04-live
+lastLoadedOutputPreset=_HD800s 1 Oratory1990
 
 [StreamInputs]
-inputDevice=alsa_input.usb-046d_HD_Pro_Webcam_C920_F95B80DF-02.analog-stereo
+inputDevice=alsa_input.usb-Husky_Howl_Husky_Howl_REV1.0-00.analog-stereo
 
 [StreamOutputs]
-mostUsedPresets=current,recovered-24.04-live,current7 kkkk
+mostUsedPresets=_HD800s 1 Oratory1990,_HD800s 2 Bass Shelf,empty,Arya 1 Oratory1990,ISN EBC80 2 Bass Shelf
 outputDevice=alsa_output.usb-Topping_DX3_Pro_-00.HiFi__Headphones__sink
-plugins=equalizer#4,equalizer#5,equalizer#7,equalizer#8,equalizer#9,equalizer#10,equalizer#11,equalizer#12,equalizer#13,equalizer#15,equalizer#16
-usedPresets=current:2,current7 kkkk:1,recovered-24.04-live:1
+plugins=equalizer#15,crossfeed#0
+usedPresets=_HD800s 2 Bass Shelf:7,_HD800s 1 Oratory1990:11,ISN EBC80 2 Bass Shelf:1,Arya 1 Oratory1990:1,empty:1
 visiblePage=pluginsPage
 visiblePlugin=equalizer#15
 
 [Window]
-height=1013
-width=1902
+height=893
+width=1518

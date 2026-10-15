@@ -1,0 +1,53 @@
+{
+    "output": {
+        "blocklist": [],
+        "crossfeed#0": {
+            "bypass": true,
+            "fcut": 650,
+            "feed": 9.5,
+            "input-gain": 0.0,
+            "output-gain": 0.0
+        },
+        "equalizer#15": {
+            "balance": 0.0,
+            "bypass": false,
+            "input-gain": -12.0,
+            "left": {
+                "band0": {
+                    "frequency": 105.0,
+                    "gain": 9.0,
+                    "mode": "APO (DR)",
+                    "mute": false,
+                    "q": 0.6666666865348816,
+                    "slope": "x1",
+                    "solo": false,
+                    "type": "Off",
+                    "width": 4.0
+                }
+            },
+            "mode": "IIR",
+            "num-bands": 1,
+            "output-gain": 0.0,
+            "pitch-left": 0.0,
+            "pitch-right": 0.0,
+            "right": {
+                "band0": {
+                    "frequency": 105.0,
+                    "gain": 9.0,
+                    "mode": "APO (DR)",
+                    "mute": false,
+                    "q": 0.6666666865348816,
+                    "slope": "x1",
+                    "solo": false,
+                    "type": "Off",
+                    "width": 4.0
+                }
+            },
+            "split-channels": false
+        },
+        "plugins_order": [
+            "equalizer#15",
+            "crossfeed#0"
+        ]
+    }
+}
