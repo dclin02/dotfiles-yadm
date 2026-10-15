@@ -3,3 +3,29 @@ git:
     colorArg: always
     pager: delta delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
 
+# leaf é uma TUI e não cabe no painel de diff: `X` abre em tela cheia e
+# volta pro lazygit ao sair com `q`. O painel continua usando delta.
+# Os comandos rodam via `sh -c` porque o lazygit usa o $SHELL (fish).
+customCommands:
+  - key: "X"
+    context: "files"
+    description: "leaf: ver diff (ou o arquivo, se não tiver diff)"
+    subprocess: true
+    command: >-
+      sh -c 'd=$(git diff HEAD --no-ext-diff -- "$1");
+      if [ -n "$d" ]; then printf "%s\n" "$d" | leaf --diff; else leaf "$1"; fi'
+      _ {{.SelectedPath | quote}}
+  - key: "X"
+    context: "commits, subCommits, reflogCommits"
+    description: "leaf: diff markdown do(s) commit(s)"
+    subprocess: true
+    command: >-
+      sh -c 'git diff --no-ext-diff "$1^" "$2" -- "*.md" "*.markdown" "*.mdx" | leaf --diff'
+      _ {{.SelectedCommitRange.From}} {{.SelectedCommitRange.To}}
+  - key: "X"
+    context: "commitFiles"
+    description: "leaf: diff do arquivo no commit"
+    subprocess: true
+    command: >-
+      sh -c 'git diff --no-ext-diff "$1^" "$1" -- "$2" | leaf --diff'
+      _ {{.SelectedCommit.Hash}} {{.SelectedCommitFile.Name | quote}}

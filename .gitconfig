@@ -32,3 +32,8 @@
 	insteadOf = https://github.com/
 [safe]
 	directory = /home/daniel.lin/bat-extras
+[pager]
+	diff = git-md-pager
+	show = git-md-pager
+[alias]
+	mdiff = "!f() { git diff --no-ext-diff \"$@\" -- \"*.md\" \"*.markdown\" \"*.mdx\" | leaf --diff; }; f"

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Git pager: diffs que tocam só arquivos markdown abrem no leaf (TUI);
+# qualquer outra coisa segue para o delta, como antes.
+set -euo pipefail
+
+raw=$(mktemp)
+plain=$(mktemp)
+trap 'rm -f "$raw" "$plain"' EXIT
+
+cat >"$raw"
+# git emite ANSI quando há pager; leaf espera diff puro
+sed 's/\x1b\[[0-9;]*[mK]//g' "$raw" >"$plain"
+
+is_markdown_only() {
+	local files
+	files=$(grep -E '^diff --(git|cc|combined) ' "$plain" || true)
+	[[ -n $files ]] && ! grep -Evq '\.(md|markdown|mdx)"?$' <<<"$files"
+}
+
+if [[ -t 1 && -z ${GIT_MD_PAGER_DISABLE:-} ]] && is_markdown_only; then
+	# descarta cabeçalho de commit (git show) antes do primeiro arquivo
+	sed -n '/^diff --/,$p' "$plain" | leaf --diff
+else
+	delta "$@" <"$raw"
+fi
