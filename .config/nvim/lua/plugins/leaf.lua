@@ -5,11 +5,13 @@ local function git_root()
   return Snacks.git.get_root() or vim.fn.getcwd()
 end
 
+local float_win = { position = "float", width = 0.9, height = 0.9, border = "rounded" }
+
 -- abre um diff (string de comando git) no modo diff do leaf, em float
 local function leaf_diff(git_cmd)
   Snacks.terminal.open({ "sh", "-c", git_cmd .. " | leaf --diff" }, {
     cwd = git_root(),
-    win = { position = "float", width = 0.9, height = 0.9, border = "rounded" },
+    win = float_win,
   })
 end
 
@@ -27,6 +29,14 @@ return {
         end,
         ft = { "markdown" },
         desc = "Leaf preview (watch)",
+      },
+      {
+        "<leader>cP",
+        function()
+          Snacks.terminal.open({ "leaf", vim.api.nvim_buf_get_name(0) }, { win = float_win })
+        end,
+        ft = { "markdown" },
+        desc = "Leaf preview (float)",
       },
       {
         "<leader>gm",
