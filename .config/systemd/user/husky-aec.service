@@ -1,0 +1,14 @@
+[Unit]
+Description=Echo cancellation for speaker calls (Husky mic + DX3 speakers)
+Documentation=file://%h/.config/pipewire/husky-aec.conf
+After=pipewire.service pipewire-session-manager.service
+BindsTo=pipewire.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/pipewire -c husky-aec.conf
+Restart=on-failure
+Slice=session.slice
+
+# Not enabled on purpose: start it only for speaker calls
+#   systemctl --user start husky-aec
