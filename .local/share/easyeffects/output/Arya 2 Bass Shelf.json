@@ -15,13 +15,13 @@
             "left": {
                 "band0": {
                     "frequency": 105.0,
-                    "gain": 9.0,
+                    "gain": 12.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 0.6666666865348816,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Off",
+                    "type": "Lo-shelf",
                     "width": 4.0
                 }
             },
@@ -33,13 +33,13 @@
             "right": {
                 "band0": {
                     "frequency": 105.0,
-                    "gain": 9.0,
+                    "gain": 12.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 0.6666666865348816,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Off",
+                    "type": "Lo-shelf",
                     "width": 4.0
                 }
             },
