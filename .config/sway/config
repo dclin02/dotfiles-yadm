@@ -408,7 +408,7 @@ bindsym $mod+F8 exec swaymsg 'input "1:1:AT_Translated_Set_2_keyboard" xkb_varia
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK
 
 # polkit auth agent
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec /usr/libexec/polkit-mate-authentication-agent-1
 
 # dex autostart (environment changed from i3 to sway)
 exec dex --autostart --environment sway
