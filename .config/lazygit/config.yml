@@ -13,19 +13,19 @@ customCommands:
     subprocess: true
     command: >-
       sh -c 'd=$(git diff HEAD --no-ext-diff -- "$1");
-      if [ -n "$d" ]; then printf "%s\n" "$d" | leaf --diff; else leaf "$1"; fi'
+      if [ -n "$d" ]; then printf "%s\n" "$d" | leaf-diff; else leaf "$1"; fi'
       _ {{.SelectedPath | quote}}
   - key: "X"
     context: "commits, subCommits, reflogCommits"
     description: "leaf: diff markdown do(s) commit(s)"
     subprocess: true
     command: >-
-      sh -c 'git diff --no-ext-diff "$1^" "$2" -- "*.md" "*.markdown" "*.mdx" | leaf --diff'
+      sh -c 'git diff --no-ext-diff "$1^" "$2" -- "*.md" "*.markdown" "*.mdx" | leaf-diff'
       _ {{.SelectedCommitRange.From}} {{.SelectedCommitRange.To}}
   - key: "X"
     context: "commitFiles"
     description: "leaf: diff do arquivo no commit"
     subprocess: true
     command: >-
-      sh -c 'git diff --no-ext-diff "$1^" "$1" -- "$2" | leaf --diff'
+      sh -c 'git diff --no-ext-diff "$1^" "$1" -- "$2" | leaf-diff'
       _ {{.SelectedCommit.Hash}} {{.SelectedCommitFile.Name | quote}}

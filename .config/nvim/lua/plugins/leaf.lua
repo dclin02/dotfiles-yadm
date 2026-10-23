@@ -9,7 +9,7 @@ local float_win = { position = "float", width = 0.9, height = 0.9, border = "rou
 
 -- abre um diff (string de comando git) no modo diff do leaf, em float
 local function leaf_diff(git_cmd)
-  Snacks.terminal.open({ "sh", "-c", git_cmd .. " | leaf --diff" }, {
+  Snacks.terminal.open({ "sh", "-c", git_cmd .. " | leaf-diff" }, {
     cwd = git_root(),
     win = float_win,
   })

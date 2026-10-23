@@ -19,7 +19,7 @@ is_markdown_only() {
 
 if [[ -t 1 && -z ${GIT_MD_PAGER_DISABLE:-} ]] && is_markdown_only; then
 	# descarta cabeçalho de commit (git show) antes do primeiro arquivo
-	sed -n '/^diff --/,$p' "$plain" | leaf --diff
+	sed -n '/^diff --/,$p' "$plain" | leaf-diff
 else
 	delta "$@" <"$raw"
 fi

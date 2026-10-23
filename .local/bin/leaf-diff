@@ -1,0 +1,121 @@
+#!/usr/bin/env python3
+"""Wrap long diff lines, then open them in `leaf --diff`.
+
+leaf cuts long diff lines with an ellipsis and can't wrap them, so this
+splits every +/-/context line at the terminal width (keeping its marker)
+and fixes up the hunk counts. Line numbers drift after a wrapped line.
+
+Usage: <diff> | leaf-diff
+Env:   LEAF_DIFF_WRAP=<cols>  wrap width for the line text (0 = off)
+"""
+import os
+import re
+import subprocess
+import sys
+import tempfile
+import unicodedata
+
+# leaf's unified view shows `terminal cols - 8` chars of each line; keep 1 spare
+LEAF_OVERHEAD = 9
+HUNK_RE = re.compile(r"^@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@(.*)$")
+
+
+def terminal_cols():
+    try:
+        with open("/dev/tty") as tty:
+            out = subprocess.run(["stty", "size"], stdin=tty, capture_output=True, text=True)
+        return int(out.stdout.split()[1])
+    except (OSError, IndexError, ValueError):
+        return 100
+
+
+def char_width(ch):
+    if unicodedata.combining(ch):
+        return 0
+    return 2 if unicodedata.east_asian_width(ch) in "WF" else 1
+
+
+def wrap_text(text, width):
+    """Split text into chunks of display width <= width, preferring spaces."""
+    chunks = []
+    while True:
+        used, cut, last_space = 0, len(text), -1
+        for i, ch in enumerate(text):
+            w = char_width(ch)
+            if used + w > width:
+                cut = i
+                break
+            used += w
+            if ch == " ":
+                last_space = i
+        if cut == len(text):
+            chunks.append(text)
+            return chunks
+        if last_space > 0:
+            chunks.append(text[:last_space])
+            text = text[last_space + 1 :]
+        else:
+            chunks.append(text[:cut])
+            text = text[cut:]
+
+
+def flush_hunk(header, lines, width, out):
+    m = HUNK_RE.match(header)
+    old_start, old_count, new_start, new_count, tail = m.groups()
+    old_count = 1 if old_count is None else int(old_count)
+    new_count = 1 if new_count is None else int(new_count)
+    body = []
+    for line in lines:
+        marker = line[:1]
+        if marker not in (" ", "+", "-", ""):
+            body.append(line)
+            continue
+        parts = wrap_text(line[1:], width)
+        extra = len(parts) - 1
+        if marker in (" ", "", "-"):
+            old_count += extra
+        if marker in (" ", "", "+"):
+            new_count += extra
+        body.extend((marker or " ") + p for p in parts)
+    out.append(f"@@ -{old_start},{old_count} +{new_start},{new_count} @@{tail}")
+    out.extend(body)
+
+
+def wrap_diff(text, width):
+    out, header, hunk = [], None, []
+    for line in text.split("\n"):
+        if header is not None and (line.startswith("@@") or line.startswith("diff ")):
+            flush_hunk(header, hunk, width, out)
+            header, hunk = None, []
+        if header is None:
+            if HUNK_RE.match(line):  # plain 2-way hunks only; combined diffs pass through
+                header = line
+            else:
+                out.append(line)
+        else:
+            hunk.append(line)
+    if header is not None:
+        if hunk and hunk[-1] == "":  # trailing newline of the input
+            hunk.pop()
+            flush_hunk(header, hunk, width, out)
+            out.append("")
+        else:
+            flush_hunk(header, hunk, width, out)
+    return "\n".join(out)
+
+
+def main():
+    text = sys.stdin.buffer.read().decode("utf-8", errors="replace")
+    width = int(os.environ.get("LEAF_DIFF_WRAP", terminal_cols() - LEAF_OVERHEAD))
+    if width >= 10:
+        text = wrap_diff(text, width)
+
+    with tempfile.TemporaryFile() as tmp:
+        tmp.write(text.encode("utf-8"))
+        tmp.seek(0)
+        os.dup2(tmp.fileno(), 0)
+    os.execvp("leaf", ["leaf", "--diff"])
+
+
+if __name__ == "__main__":
+    main()
