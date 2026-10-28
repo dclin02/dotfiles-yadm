@@ -1,0 +1,9 @@
+[Unit]
+Description=Lembrete de mindfulness de hora em hora
+
+[Timer]
+OnCalendar=hourly
+AccuracySec=1min
+
+[Install]
+WantedBy=timers.target

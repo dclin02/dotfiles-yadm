@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Lembrete de mindfulness (respiração/corpo) — disparado pelo mindful-reminder.timer
+msgs=(
+  "Pare por um instante. Respire fundo 3 vezes, devagar."
+  "Como está sua postura? Solte os ombros e relaxe a mandíbula."
+  "Sinta seus pés no chão. Inspire em 4, segure 4, expire em 6."
+  "Faça um scan rápido do corpo: onde há tensão? Respire nela."
+  "Tire os olhos da tela por 20 segundos e respire com calma."
+  "Note sua respiração sem mudá-la. Só observe por 3 ciclos."
+  "Alongue o pescoço e as costas. Beba um pouco de água."
+)
+notify-send -u normal -i face-smile -a "Mindful" "🌿 Momento mindful" "${msgs[RANDOM % ${#msgs[@]}]}"
