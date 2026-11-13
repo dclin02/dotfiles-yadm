@@ -1,0 +1,81 @@
+#!/usr/bin/env python3
+"""Convert EasyEffects output presets (equalizer only) to Equalizer APO / AutoEq
+ParametricEQ .txt files, importable by Poweramp Equalizer.
+
+Usage: ee2apo [SRC_DIR] [OUT_DIR]
+  SRC_DIR defaults to ~/.local/share/easyeffects/output
+  OUT_DIR defaults to ./poweramp-eq
+"""
+import json
+import os
+import sys
+from pathlib import Path
+
+TYPE_MAP = {
+    "Bell": "PK",
+    "Lo-shelf": "LSC",
+    "Hi-shelf": "HSC",
+    "Notch": "NO",
+    "Lo-pass": "LP",
+    "Hi-pass": "HP",
+}
+
+
+def fmt(x, nd):
+    s = f"{x:.{nd}f}".rstrip("0").rstrip(".")
+    return "0" if s in ("-0", "") else s
+
+
+def convert(path: Path):
+    data = json.loads(path.read_text())["output"]
+    eqs = [k for k in data.get("plugins_order", data.keys()) if k.startswith("equalizer")]
+    eqs = [k for k in eqs if not data[k].get("bypass")]
+    if not eqs:
+        return None, "no active equalizer"
+    if len(eqs) > 1:
+        return None, f"multiple equalizers {eqs}, not supported"
+    eq = data[eqs[0]]
+    left, right = eq["left"], eq["right"]
+    n = eq["num-bands"]
+    if any(left[f"band{i}"] != right[f"band{i}"] for i in range(n)):
+        return None, "left/right channels differ, not supported"
+
+    preamp = eq.get("input-gain", 0.0) + eq.get("output-gain", 0.0)
+    lines = [f"Preamp: {fmt(preamp, 2)} dB"]
+    idx = 0
+    for i in range(n):
+        b = left[f"band{i}"]
+        if b.get("mute") or b["type"] == "Off":
+            continue
+        t = TYPE_MAP.get(b["type"])
+        if t is None:
+            return None, f"band{i} has unsupported type {b['type']!r}"
+        if b["type"] in ("Lo-shelf", "Hi-shelf", "Lo-pass", "Hi-pass") and b.get("slope", "x1") != "x1":
+            return None, f"band{i} slope {b['slope']} not representable in APO"
+        idx += 1
+        line = f"Filter {idx}: ON {t} Fc {fmt(b['frequency'], 1)} Hz"
+        if t in ("PK", "LSC", "HSC"):
+            line += f" Gain {fmt(b['gain'], 2)} dB"
+        line += f" Q {fmt(b['q'], 3)}"
+        lines.append(line)
+    if idx == 0:
+        return None, "no active bands"
+    return "\n".join(lines) + "\n", None
+
+
+def main():
+    src = Path(sys.argv[1] if len(sys.argv) > 1 else os.path.expanduser("~/.local/share/easyeffects/output"))
+    out = Path(sys.argv[2] if len(sys.argv) > 2 else "poweramp-eq")
+    out.mkdir(parents=True, exist_ok=True)
+    for f in sorted(src.glob("*.json")):
+        txt, err = convert(f)
+        if err:
+            print(f"SKIP {f.name}: {err}")
+            continue
+        dest = out / (f.stem + ".txt")
+        dest.write_text(txt)
+        print(f"OK   {dest}")
+
+
+if __name__ == "__main__":
+    main()
