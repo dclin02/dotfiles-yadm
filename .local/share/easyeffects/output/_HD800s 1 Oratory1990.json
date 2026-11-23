@@ -26,7 +26,7 @@
                 },
                 "band1": {
                     "frequency": 100.0,
-                    "gain": 10.5,
+                    "gain": 7.5,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 0.6666666865348816,
@@ -143,7 +143,7 @@
                 },
                 "band1": {
                     "frequency": 100.0,
-                    "gain": 10.5,
+                    "gain": 7.5,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 0.6666666865348816,
