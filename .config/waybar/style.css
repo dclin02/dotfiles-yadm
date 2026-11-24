@@ -34,12 +34,23 @@ window#waybar {
     color: #b0b5bd;
 }
 
-/* OpenAI and music icons: proportional glyph metrics keep them centered. */
+/* Selected workspace icons: larger, with proportional metrics for centering. */
+#workspaces button#sway-workspace-0\: label,
+#workspaces button#sway-workspace-10\:󰷉 label,
 #workspaces button#sway-workspace-2\: label,
+#workspaces button#sway-workspace-7\: label,
+#workspaces button#sway-workspace-1\: label,
+#workspaces button#sway-workspace-6\: label,
+#workspaces button#sway-workspace-9\: label,
 #workspaces button#sway-workspace-14\:󰝚 label {
     font-family: "MonaspiceNe Nerd Font Propo";
     font-size: 15px;
     padding-top: 1px;
+}
+
+#workspaces button#sway-workspace-7\: label,
+#workspaces button#sway-workspace-10\:󰷉 label {
+    font-size: 18px;
 }
 
 #workspaces button:hover {
