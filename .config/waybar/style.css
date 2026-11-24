@@ -34,8 +34,9 @@ window#waybar {
     color: #b0b5bd;
 }
 
-/* OpenAI icon: proportional glyph metrics keep it centered in workspace 2. */
-#workspaces button#sway-workspace-2\: label {
+/* OpenAI and music icons: proportional glyph metrics keep them centered. */
+#workspaces button#sway-workspace-2\: label,
+#workspaces button#sway-workspace-14\:󰝚 label {
     font-family: "MonaspiceNe Nerd Font Propo";
     font-size: 15px;
     padding-top: 1px;
