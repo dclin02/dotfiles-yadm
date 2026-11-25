@@ -15,7 +15,7 @@
             "left": {
                 "band0": {
                     "frequency": 105.0,
-                    "gain": 6.0,
+                    "gain": 3.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 0.6666666865348816,
@@ -28,7 +28,7 @@
                     "frequency": 151.10000610351563,
                     "gain": -3.799999952316284,
                     "mode": "APO (DR)",
-                    "mute": true,
+                    "mute": false,
                     "q": 0.6100000143051147,
                     "slope": "x1",
                     "solo": false,
@@ -132,7 +132,7 @@
             "right": {
                 "band0": {
                     "frequency": 105.0,
-                    "gain": 6.0,
+                    "gain": 3.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 0.6666666865348816,
@@ -145,7 +145,7 @@
                     "frequency": 151.10000610351563,
                     "gain": -3.799999952316284,
                     "mode": "APO (DR)",
-                    "mute": true,
+                    "mute": false,
                     "q": 0.6100000143051147,
                     "slope": "x1",
                     "solo": false,
